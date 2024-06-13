@@ -9,7 +9,8 @@ header, main, footer, nav, aside, section, div  {
 
 header{
     display: flex;
-    justify-content: space-between;
+    width: 100%;
+    position: relative;
     padding-top: 20px;
 }
 
@@ -20,6 +21,8 @@ header{
 }
 
 #logo{
+    position: absolute;
+    left: 0;
     background: url("../images/logo.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -36,6 +39,8 @@ header{
 
 .options{
     display: flex;
+    position: absolute;
+    right: 0;
     flex-direction: column;
     align-items: end;
     gap: 10px;
@@ -47,7 +52,7 @@ header{
     justify-content: center; 
     align-items: center;
     padding: 3px;
-    border-radius: 22px;
+    border-radius: 5px;
     background: rgba(217, 217, 217, 0.70);
 }
 
@@ -88,10 +93,58 @@ header{
     box-shadow: none;
 }
 
-#avatar-profile > img{
+#avatar-profile{
+    position: relative;
+    width: 110px; 
+    height: 118px; 
+    margin: 0 auto; 
+}
+
+#avatar-bg,
+#avatar-img,
+#avatar-border{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#avatar-img{
+    object-fit: cover;
+    object-position: 50% 50%;
+    width: 90%;
+    height: 80%;
+    border-radius: 50%;
+}
+
+#avatar-bg{
+    object-fit: cover;
+    object-position: 50% 50%;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+}
+
+#avatar-lvl,
+#avatar-name{
+    background: #E1E1E1;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    width: 110px;
-    height: 117.822px; 
+    transform: translate(-50%, 0);
+    height: 20px; 
+}
+
+#avatar-lvl{
+    top: 0;
+    min-width: 20px;
+}
+
+#avatar-name{
+    bottom: 0;
+    min-width: 110px;
+}
+
+#avatar-name > p,
+#avatar-lvl > p{
+    font-weight: 600; 
 }
