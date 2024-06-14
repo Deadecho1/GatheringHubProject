@@ -164,12 +164,31 @@ header{
     padding-bottom: 10px;
 }
 
+#sort-select{
+    width: 140px;
+    height: 27px;
+}
+
+.dropdown-extend{
+    font-family: "Pixelify Sans";
+    background-color: #D9D9D9;
+    color: #002D42;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+}
+
+.dropdown-menu{
+    padding: 0px;
+    --bs-dropdown-link-active-bg: #002D42;
+    --bs-dropdown-border-radius: 0px;
+}
+
 .btn-extend{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 140px;
-    height: 27px;
     padding-right: 5px;
     padding-left: 5px;
     color: #002D42;
