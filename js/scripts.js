@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+window.onload = () => {
     fetch('data/user.json')
         .then(response => response.json())
         .then(data => {
@@ -21,4 +21,4 @@ document.addEventListener('DOMContentLoaded', function() {
             avatarLvl.appendChild(nameP);
         })
         .catch(error => console.error('Error fetching the JSON data:', error));
-});
+}

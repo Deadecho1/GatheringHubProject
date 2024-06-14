@@ -16,8 +16,12 @@ header{
 
 #wrapper{
     margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    max-width: 1000px;
+}
+
+#padding-wrapper{
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #logo{
@@ -147,4 +151,59 @@ header{
 #avatar-name > p,
 #avatar-lvl > p{
     font-weight: 600; 
+}
+
+.clear{
+    clear: both;
+    height: 45px;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+}
+
+footer > a{
+    background: url("../images/button.png");
+    height: 45px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center; 
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+footer > a:hover{
+    background-color: rgba(0,0,0,.4);
+    background-blend-mode: multiply;
+}
+
+.selected{
+    background-color: rgba(0,0,0,.2);
+    background-blend-mode: multiply;
+}
+
+#lookup-icon,
+#friends-icon{
+    min-width: 20px;
+    height: 20px; 
+}
+
+#lookup-icon{
+    background: url("../images/icons/lookup.svg");
+}
+
+#home-icon{
+    width: 28px;
+    height: 18.667px; 
+    background: url("../images/icons/joystick.svg");
+}
+
+#friends-icon{
+    background: url("../images/icons/group.svg");
 }
