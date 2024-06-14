@@ -22,3 +22,25 @@ window.onload = () => {
         })
         .catch(error => console.error('Error fetching the JSON data:', error));
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdownButton = document.getElementById('sort-select');
+    var dropdownMenu = dropdownButton.nextElementSibling;
+
+    var dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+            var selectedText = item.textContent.trim();
+            var selectedValue = item.getAttribute('data-value');
+
+            dropdownButton.querySelector("p").textContent = selectedText;
+
+            dropdownItems.forEach(function(item) {
+                item.classList.remove('active');
+            });
+
+            item.classList.add('active');
+        });
+    });
+});

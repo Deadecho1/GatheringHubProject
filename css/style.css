@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -157,6 +157,32 @@ header{
     font-weight: 600; 
 }
 
+#search-options{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 10px;
+}
+
+.btn-extend{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 140px;
+    height: 27px;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: #002D42;
+    background-color: #D9D9D9;
+    font-family: "Pixelify Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+    --bs-btn-border-color: none;
+    border-radius: 3px;
+}
+
 .clear{
     clear: both;
     height: 45px;
@@ -210,4 +236,24 @@ footer > a:hover{
 
 #friends-icon{
     background: url("../images/icons/group.svg");
+}
+
+.menu-burger-icon{
+    background: url("../images/icons/menu-burger.svg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 17px;
+    height: 20px;
+}
+
+.down-arrow-icon{
+    background: url("../images/icons/arrow_down.svg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 17px;
+    height: 12px;
+}
+
+p{
+    margin: 0;
 }
