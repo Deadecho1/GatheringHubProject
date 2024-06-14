@@ -17,9 +17,13 @@ header{
 #wrapper{
     margin: 0 auto;
     max-width: 1000px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #padding-wrapper{
+    flex: 1;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -159,7 +163,7 @@ header{
 }
 
 footer{
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     display: flex;
