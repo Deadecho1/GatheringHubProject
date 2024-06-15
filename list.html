@@ -49,45 +49,28 @@
                 </div>
             </div>
             <main>
-                <section class="flex-container-column">
-                    <section class="list-item">
-                        <div class="flex-container-left-aligned">
-                            <h1>Crispy Shnitzel</h1>
-                            <div id="hub-status" class="flex-container">
-                                <h2 class="text-open">Open</h2>
-                                <div class="avatar-icon"></div>
-                                <div class="avatar-icon friend"></div>
+                <section id="hub-list" class="flex-container-column">
+                    <template id="list-item-template">
+                        <section class="list-item">
+                            <div class="flex-container-left-aligned">
+                                <a href="#"><h1>Hub Name</h1></a>
+                                <div id="hub-status" class="flex-container">
+                                    <h2>Open Status</h2>
+                                </div>
+                                <div id="location">
+                                    <h2>Distance</h2>
+                                    <div id="hub-location" class="flex-container">
+                                        <h2>Hub Location</h2>
+                                        <button class="location-icon"></button>
+                                    </div>
+                                </div>
                             </div>
-                            <h2>1 Km Away</h2>
-                            <div id="hub-location" class="flex-container">
-                                <h2>Shnitzel Street 1</h2>
-                                <a href="#" class="location-icon"></a>
-                            </div>
-                        </div>
-                        <div id="hub-images-section" class="flex-container">
-                            <img class="badge-image not-collected" src="images/badges/fire.png" alt="Hub badge">
-                            <img class="hub-logo" src="images/hubs/crispy_shnitzel/logo.png" alt="Hub logo">
-                        </div>   
-                    </section>
-                    <section class="list-item list-item-alternate">
-                        <div class="flex-container-left-aligned">
-                            <h1>Crispy Shnitzel</h1>
-                            <div id="hub-status" class="flex-container">
-                                <h2 class="text-open">Open</h2>
-                                <div class="avatar-icon"></div>
-                                <div class="avatar-icon friend"></div>
-                            </div>
-                            <h2>1 Km Away</h2>
-                            <div id="hub-location" class="flex-container">
-                                <h2>Shnitzel Street 1</h2>
-                                <a href="#" class="location-icon"></a>
-                            </div>
-                        </div>
-                        <div id="hub-images-section" class="flex-container">
-                            <img class="badge-image not-collected" src="images/badges/fire.png" alt="Hub badge">
-                            <img class="hub-logo" src="images/hubs/crispy_shnitzel/logo.png" alt="Hub logo">
-                        </div>   
-                    </section>
+                            <div id="hub-images-section" class="flex-container">
+                                <img class="badge-image" src="images/placeholder.png" alt="Hub badge">
+                                <a href="#" class="hub-logo"></a>
+                            </div>   
+                        </section>
+                    </template>
                 </section>
             </main>
             <div class="clear"></div>

@@ -1,0 +1,29 @@
+{
+    "hubs" : [
+        {
+            "id" : 1,
+            "name" : "Crispy Shnitzel",
+            "badge" : "fire",
+            "openingHour" : "1200",
+            "closingHour" : "0000",
+            "mapCoordinates" : [32.07509444461784, 34.774994205870584],
+            "location" : "Shnitzel Street 1",
+            "attendees" : [
+                {
+                    "id" : 2,
+                    "avatar" : "hero"
+                }
+            ]
+        },
+        {
+            "id" : 2,
+            "name" : "Burgery",
+            "badge" : "flower",
+            "openingHour" : "0000",
+            "closingHour" : "2030",
+            "mapCoordinates" : [32.07143510946054, 34.81921554660643],
+            "location" : "Shnitzel Street 2",
+            "attendees" : []
+        }
+    ]
+}

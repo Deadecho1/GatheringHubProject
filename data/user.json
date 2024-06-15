@@ -1,6 +1,10 @@
 {
-    "name" : "Matan2008",
+    "id" : 1,
+    "name" : "MATAN2008",
     "lvl" : 4,
-    "avatar" : "hero",
-    "avatarBg" : "city-night"
+    "avatar" : "angel",
+    "avatarBg" : "cherry-pink",
+    "friends" : [2],
+    "badges" : ["fire"],
+    "mapCoordinates" : [33.818211, 35.490854]
 }
