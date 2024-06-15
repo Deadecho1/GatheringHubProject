@@ -1,10 +1,30 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 
 header, main, footer, nav, aside, section, div  {
     display: block;
+}
+
+h1{
+    color: #FFF;
+    font-family: "Pixelify Sans";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0px; 
+}
+
+h2{
+    color: #FFF;
+    font-family: "Pixelify Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+    margin: 0px;
 }
 
 header{
@@ -18,12 +38,10 @@ header{
     margin: 0 auto;
     max-width: 1000px;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    position: relative;
 }
 
 #padding-wrapper{
-    flex: 1;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -75,11 +93,21 @@ header{
     margin: 0;
 }
 
-.flex-container-column-centered{
+.flex-container{
+    display: flex;
+}
+
+.flex-container-column{
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
+}
+
+.flex-container-left-align{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
 }
 
 .form-switch .form-check-input,
@@ -202,17 +230,36 @@ header{
     border-radius: 3px;
 }
 
+button > p{
+    margin: 0;
+}
+
+.list-item{
+    display: flex;
+    justify-content: space-between;
+    background-color: #002D42;
+    height: 120px;
+    width: 100%;
+    padding: 16px 20px;
+    box-sizing: border-box;
+}
+
+.list-item-alternate{
+    background-color: #03334A;
+}
+
 .clear{
     clear: both;
     height: 45px;
 }
 
 footer{
-    position: relative;
-    left: 0;
+    position: fixed;
+    left: center;
     bottom: 0;
     display: flex;
     width: 100%;
+    max-width: 1000px;
 }
 
 footer > a{
@@ -257,6 +304,68 @@ footer > a:hover{
     background: url("../images/icons/group.svg");
 }
 
+.avatar-icon {
+    background: url("../images/avatars/hero_zoom.png");
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-position: center; 
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    margin-top: auto;
+    margin-right: 4px;
+    
+}
+
+.friend{
+    border: 0.5px solid #6BF51F;
+}
+
+.text-open{
+    margin-right: 16px;
+    color: #6BF51F;
+}
+
+.text-close{
+    margin-right: 16px;
+    color: #F51F1F;
+}
+
+#hub-status{
+    margin-bottom: 6px;
+}
+
+#hub-images-section{
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.badge-image{
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+.not-collected{
+    opacity: 0.5;
+}
+
+.hub-logo{
+    height: 90px;
+    width: 90px;
+    object-fit: contain;
+}
+
+.location-icon{
+    background: url("../images/icons/location.svg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 16px;
+    height: 18px;
+    margin-left: 12px;
+    margin-bottom: auto;
+}
+
 .menu-burger-icon{
     background: url("../images/icons/menu-burger.svg");
     background-repeat: no-repeat;
@@ -273,6 +382,3 @@ footer > a:hover{
     height: 12px;
 }
 
-p{
-    margin: 0;
-}
