@@ -8,21 +8,63 @@
             "closingHour" : "0000",
             "mapCoordinates" : [32.07509444461784, 34.774994205870584],
             "location" : "Shnitzel Street 1",
-            "attendees" : [
-                {
-                    "id" : 2,
-                    "avatar" : "hero"
-                }
-            ]
+            "attendees" : []
         },
         {
             "id" : 2,
             "name" : "Burgery",
             "badge" : "flower",
-            "openingHour" : "0000",
-            "closingHour" : "2030",
+            "openingHour" : "1400",
+            "closingHour" : "0000",
             "mapCoordinates" : [32.07143510946054, 34.81921554660643],
-            "location" : "Shnitzel Street 2",
+            "location" : "Somewhere Street 2",
+            "attendees" : []
+        },
+        {
+            "id" : 3,
+            "name" : "Tasty Food",
+            "badge" : "sun",
+            "openingHour" : "0800",
+            "closingHour" : "2100",
+            "mapCoordinates" : [32.07143510946054, 35],
+            "location" : "Somewhere Street 3",
+            "attendees" : []
+        },
+        {
+            "id" : 4,
+            "name" : "Level Up",
+            "badge" : "coin",
+            "openingHour" : "1200",
+            "closingHour" : "2130",
+            "mapCoordinates" : [32.06321492675298, 34.78372421163784],
+            "location" : "Somewhere Street 4",
+            "attendees" : [
+                {
+                    "id" : 2,
+                    "avatar" : "hero"
+                },
+                {
+                    "id" : 3,
+                    "avatar" : "princess"
+                },
+                {
+                    "id" : 3,
+                    "avatar" : "mage"
+                },
+                {
+                    "id" :4,
+                    "avatar" :"mage"
+                }
+            ]
+        },
+        {
+            "id" : 5,
+            "name" : "Parisis",
+            "badge" : "heart",
+            "openingHour" : "1200",
+            "closingHour" : "2200",
+            "mapCoordinates" : [33.06321492675298, 34.78372421163784],
+            "location" : "Somewhere Street 5",
             "attendees" : []
         }
     ]
