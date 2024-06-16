@@ -445,3 +445,33 @@ footer > a:hover{
     height: 12px;
 }
 
+/*MO-page*/
+.background-blue-color{
+    background-color: #002D42;
+}
+#MO-firstSection{
+    background-color: #002D42;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+}
+#MO-firstSection .left-column{
+    display: block;
+
+}
+#MO-firstSection .left-column .MO-hub-logo{
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    margin-top: 20px;
+    background: url("../images/hubs/4/logo.png")  50% / cover no-repeat;
+}
+#MO-firstSection .left-column .MO-hub-icon{
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    background: url("../images/badges/coin.png")  50% / cover no-repeat;
+    margin-top: 20px;
+    margin-left: 20px;
+}
