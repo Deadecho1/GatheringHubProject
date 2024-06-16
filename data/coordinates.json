@@ -1,0 +1,18 @@
+{
+    "users" : {
+        "2" : {
+            "latitude" : 30,
+            "longitude" : 20
+        },
+        "3" : {
+            "latitude" : 50,
+            "longitude" : 80
+        }
+    },
+    "hubs" : {
+        "1" : {
+            "latitude" : 55,
+            "longitude" : 50
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "2": {
+        "name": "Benthehero1",
+        "lvl": 10,
+        "avatar": "hero",
+        "avatarBg": "city-night",
+        "friends": [1],
+        "badges": []
+    },
+    "3": {
+        "name": "Gandalf2",
+        "lvl": 5,
+        "avatar": "mage",
+        "avatarBg": "cherry-pink",
+        "friends": [4],
+        "badges": []
+    },
+    "4": {
+        "name": "Jessy2",
+        "lvl": 7,
+        "avatar": "princess",
+        "avatarBg": "cherry-pink",
+        "friends": [],
+        "badges": []
+    }
+    
+}

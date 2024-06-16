@@ -4,12 +4,16 @@ let abortController;
 let currentLocation = localStorage.getItem('coords');
 const defaultLocation = [32.0681777049327, 34.803421411031955];
 
+const userDataReadyEvent = new Event('userDataReady');
+
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         abortController = new AbortController();
         await initUser();
         await initList();
         setupDropdown();
+
+        document.dispatchEvent(userDataReadyEvent);
     } catch (error) {
         handleError(error, 'Initialization error:');
     }
