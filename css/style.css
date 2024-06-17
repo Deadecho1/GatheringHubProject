@@ -476,6 +476,23 @@ footer > a:hover{
     margin-left: 20px;
 }
 #MO-firstSection .right-column{
+    width: 89%;
+}
+#MO-firstSection .right-column #hub-info-container{
     display: flex;
     flex-wrap: wrap;
+    align-items: start;
+    margin-top: 20px;
+    justify-content: space-between;
+    
+}
+#MO-firstSection .right-column h1{
+    font-size: 18px;
+}
+#x-icon{
+    background: url("../images/Icons/x.svg");
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
