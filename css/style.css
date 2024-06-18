@@ -544,3 +544,10 @@ footer > a:hover{
     line-height: normal;
     text-decoration-line: underline;
 }
+
+#MO-passing-imgs{
+    width: 360px;
+    height: 190px;
+    flex-shrink: 0;
+    background: #384248;
+}
