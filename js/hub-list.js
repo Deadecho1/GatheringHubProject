@@ -1,67 +1,16 @@
-let userData;
-let hubsData;
-let abortController;
-let currentLocation = localStorage.getItem('coords');
-const defaultLocation = [32.0681777049327, 34.803421411031955];
 
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('userDataReady', () => {
     try {
-        abortController = new AbortController();
-        await initUser();
-        await initList();
         setupDropdown();
-    } catch (error) {
-        handleError(error, 'Initialization error:');
-    }
-});
-
-window.addEventListener('beforeunload', () => {
-    if (abortController) {
-        abortController.abort();
-    }
-});
-
-async function fetchData(url) {
-    try {
-        const response = await fetch(url, { signal: abortController.signal });
-        if (!response.ok) {
-            throw new Error('Network response error');
-        }
-        return response.json();
-    } catch (error) {
-        handleError(error, `Error fetching data from ${url}:`);
-    }
-}
-
-async function initUser() {
-    userData = await fetchData('data/user.json');
-    if (userData) {
-        setAvatarData(userData);
-    }
-}
-
-
-async function initList() {
-    hubsData = await fetchData('data/hubs.json');
-    if (hubsData) {
-        populateHubList(hubsData.hubs);
+        populateHubList(hubsData);
         if (currentLocation) {
             showPosition();
         }
-        getLocation();
-    }
-}
-
-function setAvatarData(data) {
-    try {
-        setElementSrc('avatar-bg', `images/avatar_bgs/${data.avatarBg}.png`, data.avatarBg);
-        setElementSrc('avatar-img', `images/avatars/${data.avatar}.png`, data.avatar);
-        setElementText('avatar-name', data.name);
-        setElementText('avatar-lvl', data.lvl);
+        setLocation();
     } catch (error) {
-        console.error('Error setting avatar data:', error);
+        handleError(error, "Failed to initialize list");
     }
-}
+});
 
 function setupDropdown() {
     let dropdownButton = document.getElementById('sort-select');
@@ -70,10 +19,16 @@ function setupDropdown() {
     let dropdownMenu = dropdownButton.nextElementSibling;
     let dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
     dropdownItems.forEach(item => {
-        item.addEventListener('click', function () {
+        item.addEventListener('click', () => {
             updateDropdown(dropdownButton, dropdownItems, item);
         });
     });
+}
+
+function updateDropdown(button, items, selectedItem) {
+    button.innerHTML = `<i class="menu-burger-icon"></i>${selectedItem.textContent.trim()}<i class="down-arrow-icon"></i>`;
+    items.forEach(item => item.classList.remove('active'));
+    selectedItem.classList.add('active');
 }
 
 function populateHubList(hubs) {
@@ -82,16 +37,17 @@ function populateHubList(hubs) {
     if (!template) return;
 
     let colorFlag = false;
-    hubs.forEach(hub => {
+    for (const hubId in hubs) {
+        const hub = hubs[hubId];
         let clone = template.content.cloneNode(true);
-        setupHubItem(clone, hub, colorFlag);
+        setupHubItem(clone, hub, hubId, colorFlag);
         hubList.appendChild(clone);
         colorFlag = !colorFlag;
-    });
+    }
 }
 
-function setupHubItem(clone, hub, colorFlag) {
-    clone.firstElementChild.setAttribute("id", `item-${hub.id}`);
+function setupHubItem(clone, hub, hubId, colorFlag) {
+    clone.firstElementChild.setAttribute("id", `item-${hubId}`);
     if (colorFlag) {
         clone.querySelector(".list-item").classList.add("list-item-alternate");
     }
@@ -99,7 +55,7 @@ function setupHubItem(clone, hub, colorFlag) {
     setupHubStatus(clone.querySelector("#hub-status"), hub);
     setupHubLocation(clone.querySelector("#location"), hub);
     setupHubBadge(clone.querySelector(".badge-image"), hub);
-    clone.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hub.id}/logo.png")`;
+    clone.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubId}/logo.png")`;
 }
 
 function setupHubStatus(hubStatus, hub) {
@@ -138,33 +94,6 @@ function setupHubBadge(badge, hub) {
     badge.alt = `${hub.badge} badge`;
     if (userData && !userData.badges.includes(hub.badge)) {
         badge.classList.add("not-collected");
-    }
-}
-
-function setElementSrc(id, src, alt) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.src = src;
-        element.alt = alt;
-    }
-}
-
-function setElementText(id, text) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.textContent = text;
-    }
-}
-
-function updateDropdown(button, items, selectedItem) {
-    button.innerHTML = `<i class="menu-burger-icon"></i>${selectedItem.textContent.trim()}<i class="down-arrow-icon"></i>`;
-    items.forEach(item => item.classList.remove('active'));
-    selectedItem.classList.add('active');
-}
-
-function handleError(error, message) {
-    if (error.name !== 'AbortError') {
-        console.error(message, error);
     }
 }
 
@@ -208,7 +137,7 @@ function openNavigationApp(latitude, longitude) {
     window.open(url, '_blank');
 }
 
-function getLocation() {
+function setLocation() {
     if (navigator.geolocation) {
         const options = {
             enableHighAccuracy: true,
@@ -242,9 +171,10 @@ function setHubsDistance(lat, long) {
     if(!document.getElementById("hub-list")){
         return;
     }
-    hubsData.hubs.forEach(hub => {
+    for (const id in hubsData) {
+        hub = hubsData[id];
         const distance = distanceInKmBetweenEarthCoordinates(lat, long, hub.mapCoordinates[0], hub.mapCoordinates[1]);
-        const hubSection = document.getElementById(`item-${hub.id}`);
+        const hubSection = document.getElementById(`item-${id}`);
         hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
-    });
+    }
 }

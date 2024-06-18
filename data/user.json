@@ -5,6 +5,5 @@
     "avatar" : "angel",
     "avatarBg" : "cherry-pink",
     "friends" : [2],
-    "badges" : ["fire"],
-    "mapCoordinates" : [32.474240599362005, 34.96468114859743]
+    "badges" : ["fire"]
 }
