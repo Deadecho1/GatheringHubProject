@@ -457,8 +457,16 @@ footer > a:hover{
     display: flex;
     flex-wrap: wrap;
 }
+#MO-firstSection div{
+    padding-left: 22px;
+    padding-top: 22px;
+    padding-right: 22px;
+    display: flex;
+    width: 100%;
+}
 #MO-firstSection .left-column{
-    display: block;
+    display: flex;
+    flex-direction: column;
 
 }
 #MO-firstSection .left-column .MO-hub-logo{
@@ -478,13 +486,15 @@ footer > a:hover{
     margin-left: 20px;
 }
 #MO-firstSection .right-column{
-    width: 89%;
+    display: flex;
+    width: 100%;
 }
 #MO-firstSection .right-column #hub-info-container{
     display: block;
     align-items: start;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-left: 10px;
+    width: 100%;
     
 }
 #MO-firstSection .right-column #hub-info-container div{
@@ -493,7 +503,7 @@ footer > a:hover{
     width: 100%;
     justify-content: space-between;
     
-}
+} 
 #MO-firstSection .right-column h1{
     font-size: 18px;
 }
@@ -548,8 +558,54 @@ footer > a:hover{
 }
 
 #MO-passing-imgs{
-    width: 360px;
-    height: 190px;
+    width: 100%;
+    height: 300px;
     flex-shrink: 0;
     background: #384248;
+    display: flex;
+}
+.carousel {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.carousel-inner {
+    width: 500px;
+    height: 200px;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+}
+
+.prev {
+    left: 22px;
+    padding-top: 150px;
+}
+
+.next {
+    right: 22px;
+    padding-top: 150px;
 }
