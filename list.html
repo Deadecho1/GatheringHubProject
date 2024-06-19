@@ -52,12 +52,25 @@
                             <li><button class="dropdown-item dropdown-extend" type="button">Popularity</button></li>                        
                         </ul>
                     </div>
+                    <button class="svg-button add-hub-button" title="Add Hub">
+                        <i class="plus-icon"></i>
+                    </button>
+                    <div class="search-container">
+                        <i class="search-icon"></i>
+                        <input type="text" id="search-bar" placeholder="Search">
+                        <button id="search-delete-button" class="svg-button">
+                            <i class="delete-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <main>
-                <section id="hub-list" class="flex-container-column">
+                <ul id="hub-list" class="flex-container-column">
                     <template id="list-item-template">
-                        <section class="list-item">
+                        <li class="list-item">
+                            <button class="svg-button trash-button" title="Delete Hub">
+                                <i class="trash-icon"></i>
+                            </button>
                             <div class="flex-container-left-aligned">
                                 <a href="#"><h1>Hub Name</h1></a>
                                 <div id="hub-status" class="flex-container">
@@ -75,9 +88,9 @@
                                 <img class="badge-image" src="images/placeholder.png" alt="Hub badge">
                                 <a href="#" class="hub-logo"></a>
                             </div>   
-                        </section>
+                        </li>
                     </template>
-                </section>
+                </ul>
             </main>
             <div class="clear"></div>
             <footer>

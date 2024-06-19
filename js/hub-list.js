@@ -44,18 +44,37 @@ function populateHubList(hubs) {
         hubList.appendChild(clone);
         colorFlag = !colorFlag;
     }
+
+    const trashButtons = hubList.querySelectorAll('.trash-button');
+    trashButtons.forEach(button => {
+            button.addEventListener('click', handleDelete);
+    });
 }
 
-function setupHubItem(clone, hub, hubId, colorFlag) {
-    clone.firstElementChild.setAttribute("id", `item-${hubId}`);
-    if (colorFlag) {
-        clone.querySelector(".list-item").classList.add("list-item-alternate");
+function handleDelete(event) {
+    const listItem = event.target.closest('.list-item');
+    if (listItem) {
+        lstParse = listItem.id.split("-");
+        itemId = lstParse[lstParse.length - 1];
+        delete hubsData[itemId];
+        listItem.remove();
     }
-    clone.querySelector("h1").textContent = hub.name;
-    setupHubStatus(clone.querySelector("#hub-status"), hub);
-    setupHubLocation(clone.querySelector("#location"), hub);
-    setupHubBadge(clone.querySelector(".badge-image"), hub);
-    clone.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubId}/logo.png")`;
+}
+
+function setupHubItem(hubSection, hub, hubId, colorFlag) {
+    hubSection.firstElementChild.setAttribute("id", `item-${hubId}`);
+    if (colorFlag) {
+        hubSection.querySelector(".list-item").classList.add("list-item-alternate");
+    }
+    links = hubSection.firstElementChild.getElementsByTagName("a");
+    for (const link of links) {
+        link.href = `hub-page.html?id=${hubId}`;
+    }
+    hubSection.querySelector("h1").textContent = hub.name;
+    setupHubStatus(hubSection.querySelector("#hub-status"), hub);
+    setupHubLocation(hubSection.querySelector("#location"), hub);
+    setupHubBadge(hubSection.querySelector(".badge-image"), hub);
+    hubSection.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubId}/logo.png")`;
 }
 
 function setupHubStatus(hubStatus, hub) {
