@@ -234,6 +234,17 @@ header{
     font-weight: 600; 
 }
 
+.search-container{
+    position: relative;
+}
+
+#search-delete-button{
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 10px;
+}
+
 #search-options{
     display: flex;
     justify-content: space-between;
@@ -244,6 +255,13 @@ header{
 #sort-select{
     width: 140px;
     height: 27px;
+}
+
+.svg-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
 }
 
 .bg-map{
@@ -293,7 +311,36 @@ button > p{
     margin: 0;
 }
 
+#search-bar{
+    width: 140px;
+    height: 25px; 
+    border-radius: 3px; 
+    border: none;
+    background-color: #D9D9D9;
+    color: #A4A4A4; 
+    font-size: 12px;
+    padding: 10px 30px 10px 30px;
+}
+
+#search-button{
+    margin: 0;
+}
+
+.trash-button{
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.add-hub-button{
+    width: 20px;
+    height: 20px;
+}
+
 .list-item{
+    position: relative;
     display: flex;
     justify-content: space-between;
     background-color: #002D42;
@@ -352,6 +399,32 @@ footer > a:hover{
     height: 20px; 
 }
 
+.search-icon{
+    background: url("../images/Icons/search.svg");
+    position: absolute;
+    top: 50%;
+    left: 1px;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 15px; 
+    color: #aaa;
+    pointer-events: none; 
+    display: inline-block;
+}
+
+.plus-icon{
+    background: url("../images/Icons/plus.svg");
+    width : 20px;
+    height: 20px;
+}
+
+.delete-icon{
+    background: url("../images/Icons/delete-keyboard.svg");
+    display: inline-block;
+    height: 15px;
+    width: 20px;
+}
+
 #lookup-icon{
     background: url("../images/icons/lookup.svg");
 }
@@ -366,6 +439,12 @@ footer > a:hover{
     background: url("../images/icons/group.svg");
 }
 
+.trash-icon{
+    background: url("../images/icons/trash.svg");
+    width: 20px;
+    height: 20px;
+}
+
 .avatar-icon {
     background: url("../images/placeholder.png");
     width: 20px;
@@ -375,8 +454,7 @@ footer > a:hover{
     background-repeat: no-repeat;
     border-radius: 50%;
     margin-top: 4px;
-    margin-right: 4px;
-    
+    margin-right: 4px; 
 }
 
 .friend{
@@ -410,6 +488,11 @@ footer > a:hover{
 
 .not-collected{
     opacity: 0.5;
+}
+
+#hub-list{
+    padding: 0;
+    margin: 0;
 }
 
 .hub-logo{
@@ -525,6 +608,7 @@ footer > a:hover{
     justify-content: center;
     flex-shrink: 0;
 }
+
 .phone-icon{
     background: url("../images/Icons/phone.svg");
     position: relative;
