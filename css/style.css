@@ -646,8 +646,9 @@ footer > a:hover{
     height: auto;
 }
 #x-icon{
-    background: url("../images/Icons/x.svg");
-    position: relative;
+    background: url("../images/icons/x.svg");
+    background-repeat: no-repeat;
+    background-position: center; 
     width: 20px;
     height: 20px;
 }
@@ -665,7 +666,7 @@ footer > a:hover{
 }
 
 .phone-icon{
-    background: url("../images/icons/phone.svg");
+    background: url("../images/Icons/phone.svg");
     position: relative;
     width: 20px;
     height: 20px;
@@ -738,4 +739,46 @@ footer > a:hover{
 .next {
     right: 20px;
     padding-top: 50%;
+}
+
+.about-container {
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.about {
+    margin-top: 20px;
+}
+
+.about h3 {
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#about-text {
+    margin: 0;
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#more-link {
+    color: #5BDDEB;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+#more-link:hover {
+    color: darkslateblue;
 }
