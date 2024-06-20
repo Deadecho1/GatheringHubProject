@@ -6,30 +6,46 @@ document.addEventListener('userDataReady', async function () {
             loadHubData(coordinatesData.hubs);
         }
     } catch (error) {
-        console.error('Error during data processing:', error);
+        handleError('Error during data processing:', error);
     }
 });
 
 function loadAvatar(avatarName, playerName, nameColor, screenLeftPercent, screenTopPercent){
-    const template = document.querySelector("#avatar-template");
-    if (!template) return;
+    try {
+        const template = document.querySelector("#avatar-template");
 
-    const map = document.querySelector(".bg-map");
-    const clone = template.content.cloneNode(true);
-    const container = clone.querySelector(".avatar-container");
-    container.style.top = `${screenTopPercent}%`;
-    container.style.left = `${screenLeftPercent}%`;
+        const map = document.querySelector(".bg-map");
+        const clone = template.content.cloneNode(true);
+        const container = clone.querySelector(".avatar-container");
+        container.style.top = `${screenTopPercent}%`;
+        container.style.left = `${screenLeftPercent}%`;
 
-    avatarImg = clone.querySelector("img");
-    avatarImg.src = `images/avatars/${avatarName}.png`;
-    avatarImg.alt = `${avatarName}`;
+        avatarImg = clone.querySelector("img");
+        avatarImg.src = `images/avatars/${avatarName}.png`;
+        avatarImg.alt = `${avatarName}`;
 
-    const txt = clone.querySelector("p");
-    txt.textContent = playerName;
-    txt.style.color = nameColor;
-    txt.style.fontWeight = 600;
-        
-    map.appendChild(clone);
+        const txt = clone.querySelector("p");
+        txt.textContent = playerName;
+        txt.style.color = nameColor;
+        txt.style.fontWeight = 600;
+            
+        map.appendChild(clone);
+    } catch (error) {
+        handleError('Error during avatar loading:', error);
+    }
+    
+}
+
+function loadHubAvatar(hubId, isBadgeCollected){
+    try {
+        const template = document.querySelector("#hub-avatar-template");
+
+        const map = document.querySelector(".bg-map");
+        const clone = template.content.cloneNode(true);
+        const container = clone.querySelector(".avatar-container");
+    } catch (error) {
+        handleError('Error during hub-avatar loading:', error);
+    }
 }
 
 async function loadAvatarData(usersCoordinates){

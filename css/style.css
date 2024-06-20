@@ -17,6 +17,11 @@ h1{
     margin: 0px; 
 }
 
+#create-hub-header{
+    font-size: 30px;
+    margin-top: 10px;
+}
+
 h2{
     color: #FFF;
     font-family: "Pixelify Sans";
@@ -27,16 +32,38 @@ h2{
     margin: 0px;
 }
 
+form > h2{
+    color: #FFF;
+    font-family: "Pixelify Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0px;
+    margin-bottom: 3px; 
+    text-decoration: underline;
+}
+
 div{
     font-family: "Pixelify Sans";
+    color: #FFF;
+    font-size: 20px;
 }
 
 button{
     border: none;
 }
 
+.centered{
+    text-align: center;
+}
+
 a{
     text-decoration: none;
+}
+
+label{
+    color: #E1E1E1;
 }
 
 header{
@@ -51,6 +78,8 @@ header{
     max-width: 1000px;
     min-height: 100vh;
     position: relative;
+    overflow-x : hidden;
+    overflow-y: hidden;
 }
 
 #padding-wrapper{
@@ -112,7 +141,7 @@ header{
     justify-content: center; 
     align-items: center;
     padding: 3px;
-    border-radius: 22px;
+    border-radius: 8px;
     background: rgba(217, 217, 217, 0.70);
 }
 
@@ -125,6 +154,11 @@ header{
     font-weight: 400;
     line-height: normal;
     margin: 0;
+}
+
+.name-tag-container > img{
+    width: 20px;
+    height: 20px;
 }
 
 .flex-container{
@@ -163,6 +197,22 @@ header{
     box-shadow: none;
 }
 
+.badge-image-ex {
+    max-width: 80px;
+    max-height: 80px;
+    display: block;
+    margin-top: 5px;
+}
+
+.image-checkbox {
+    text-align: center; 
+}
+
+.image-checkbox input[type="radio"] {
+    display: block;
+    margin: auto;
+}
+
 #avatar-profile{
     position: relative;
     width: 110px; 
@@ -189,8 +239,6 @@ header{
 
 .avatar-container{
     position: absolute;
-    top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
 }
 
@@ -269,9 +317,9 @@ header{
     background-size: cover;
     background-position: center; 
     position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .dropdown-extend{
@@ -339,6 +387,11 @@ button > p{
     height: 20px;
 }
 
+.add-hub-button:hover{
+    background-color: rgba(0,0,0,.4);
+    background-blend-mode: multiply;
+}
+
 .list-item{
     position: relative;
     display: flex;
@@ -400,7 +453,7 @@ footer > a:hover{
 }
 
 .search-icon{
-    background: url("../images/Icons/search.svg");
+    background: url("../images/icons/search.svg");
     position: absolute;
     top: 50%;
     left: 1px;
@@ -413,13 +466,13 @@ footer > a:hover{
 }
 
 .plus-icon{
-    background: url("../images/Icons/plus.svg");
+    background: url("../images/icons/plus.svg");
     width : 20px;
     height: 20px;
 }
 
 .delete-icon{
-    background: url("../images/Icons/delete-keyboard.svg");
+    background: url("../images/icons/delete-keyboard.svg");
     display: inline-block;
     height: 15px;
     width: 20px;
@@ -445,6 +498,11 @@ footer > a:hover{
     height: 20px;
 }
 
+#hub-status > .avatar-icon{
+    margin-top: 4px;
+    margin-right: 4px;
+}
+
 .avatar-icon {
     background: url("../images/placeholder.png");
     width: 20px;
@@ -453,8 +511,6 @@ footer > a:hover{
     background-position: center; 
     background-repeat: no-repeat;
     border-radius: 50%;
-    margin-top: 4px;
-    margin-right: 4px; 
 }
 
 .friend{
@@ -512,6 +568,7 @@ footer > a:hover{
     height: 18px;
     margin-left: 12px;
     margin-bottom: auto;
+    flex-shrink: 0;
 }
 
 .menu-burger-icon{
@@ -581,7 +638,7 @@ footer > a:hover{
     font-size: 18px;
 }
 #x-icon{
-    background: url("../images/Icons/x.svg");
+    background: url("../images/icons/x.svg");
     position: relative;
     width: 20px;
     height: 20px;
@@ -610,7 +667,7 @@ footer > a:hover{
 }
 
 .phone-icon{
-    background: url("../images/Icons/phone.svg");
+    background: url("../images/icons/phone.svg");
     position: relative;
     width: 20px;
     height: 20px;
