@@ -1,7 +1,11 @@
+let temporaryQueryStringHub;
 
 document.addEventListener('userDataReady', () => {
     try {
         setupDropdown();
+        if(window.location.search){
+            addHubFromQuery();
+        }
         populateHubList(hubsData);
         if (currentLocation) {
             showPosition();
@@ -66,7 +70,7 @@ function setupHubItem(hubSection, hub, hubId, colorFlag) {
     if (colorFlag) {
         hubSection.querySelector(".list-item").classList.add("list-item-alternate");
     }
-    links = hubSection.firstElementChild.getElementsByTagName("a");
+    const links = hubSection.firstElementChild.getElementsByTagName("a");
     for (const link of links) {
         link.href = `hub-page.html?id=${hubId}`;
     }
@@ -125,6 +129,46 @@ function checkOpenStatus(openingHour, closingHour) {
     }
 
     return currentTime < closingHour && currentTime > openingHour;
+}
+
+
+/* THIS SUCKS AND IS TEMPORARY BECAUSE NO DATABASE*/
+function addHubFromQuery(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let hubParams = {
+        name : "",
+        address : "",
+        openingHour : "",
+        closingHour : "",
+        lat : "",
+        lng : "",
+        logo : "",
+        badge : ""
+    };
+
+    urlParams.forEach((value, key) => {
+        hubParams[key] = value;
+    });
+
+    temporaryQueryStringHub = {
+        "name" : hubParams.name,
+        "badge" : hubParams.badge,
+        "openingHour" : hubParams.openingHour,
+        "closingHour" : hubParams.closingHour,
+        "mapCoordinates" : [hubParams.lat, hubParams.lng],
+        "location" : hubParams.address,
+        "attendees" : []
+    }
+
+    const hubList = document.querySelector("#hub-list");
+    const template = document.querySelector("#list-item-template");
+    if (!template) return;
+    let clone = template.content.cloneNode(true);
+
+    setupHubItem(clone, temporaryQueryStringHub, 0, true);
+    clone.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubParams.logo}/logo.png")`;
+    hubList.appendChild(clone);
 }
 
 function addLeadingZero(num) {
@@ -194,6 +238,13 @@ function setHubsDistance(lat, long) {
         hub = hubsData[id];
         const distance = distanceInKmBetweenEarthCoordinates(lat, long, hub.mapCoordinates[0], hub.mapCoordinates[1]);
         const hubSection = document.getElementById(`item-${id}`);
+        hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
+    }
+
+    /* DELETE ON FINAL VERSION */ 
+    if(temporaryQueryStringHub){
+        const distance = distanceInKmBetweenEarthCoordinates(lat, long, temporaryQueryStringHub.mapCoordinates[0], temporaryQueryStringHub.mapCoordinates[1]);
+        const hubSection = document.getElementById(`item-0`);
         hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
     }
 }

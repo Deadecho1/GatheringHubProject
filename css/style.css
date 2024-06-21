@@ -135,6 +135,10 @@ header{
     z-index: 3;
 }
 
+.background-blue{
+    background-color: #03334A;
+}
+
 .name-tag-container{
     display: flex;
     flex-direction: column;
@@ -591,6 +595,7 @@ footer > a:hover{
 .hub-page-wrapper{
     background-color: #002D42;
 }
+
 #MO-firstSection{
     width: 100%;
     height: 200px;
