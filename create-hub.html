@@ -15,87 +15,66 @@
         <title>Gathering Hub - Create Hub</title>  
     </head>
     <body>
-        <div id="wrapper" class="centered background-blue-color">
+        <div id="wrapper" class="centered background-blue">
             <div id="padding-wrapper">
                 <h1 id="create-hub-header">Create a Hub</h1>
                 <form id="hub-form" class="mt-3" action="list.html" method="get">
-                    <h2>Basic Info</h2>
-                    <div class="form-group">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Hub Name</label>
-                            <input required name="name" id="name" type="text" class="form-control" placeholder="eg. John Doe" maxlength="25">
-                        </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
-                            <input required name="address" type="text" class="form-control" id="address" placeholder="eg. Anne Frank St 12 Ramat Gan">
-                        </div>
-                        <div class="mb-3">
-                            <label for="number" class="form-label">Phone Number</label>
-                            <input required name="number" id="number" type="tel" class="form-control" placeholder="Phone number" maxlength="15">
-                        </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Hub Name</label>
+                        <input required name="name" id="name" type="text" class="form-control" placeholder="eg. John Doe" maxlength="25">
                     </div>
-                    <h2>About</h2>
-                    <div class="form-group">
-                        <div class="mb-3">
-                            <label for="time-range" class="form-label">Working Hours</label>
-                            <div class="row align-items-center" id="time-range">
-                                <div class="col">
-                                    <div class="d-flex align-items-center">
-                                        <input type="number" name="op-hour" id="op-hour" value="12" min="00" max="23" class="form-control me-2">
-                                        <span>:</span>
-                                        <input type="number" name="op-min" id="op-min" value="00" min="00" max="59" class="form-control ms-2 me-2">
-                                        <span>-</span>
-                                        <input type="number" name="cl-hour" id="cl-hour" value="12" min="00" max="23" class="form-control ms-2 me-2">
-                                        <span>:</span>
-                                        <input type="number" name="cl-min" id="cl-min" value="00" min="00" max="59" class="form-control ms-2">
-                                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input required name="address" type="text" class="form-control" id="address" placeholder="eg. Anne Frank St 12 Ramat Gan">
+                    </div>
+                    <div class="mb-3">
+                        <label for="time-range" class="form-label">Working Hours</label>
+                        <div class="row align-items-center" id="time-range">
+                            <div class="col">
+                                <div class="d-flex align-items-center">
+                                    <input type="number" id="op-hour" value="12" min="00" max="23" class="form-control me-2">
+                                    <span>:</span>
+                                    <input type="number" id="op-min" value="00" min="00" max="59" class="form-control ms-2 me-2">
+                                    <span>-</span>
+                                    <input type="number" id="cl-hour" value="14" min="00" max="23" class="form-control ms-2 me-2">
+                                    <span>:</span>
+                                    <input type="number" id="cl-min" value="00" min="00" max="59" class="form-control ms-2">
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="mb-3">
                         <div class="mb-3">
-                            <select name="logo" class="form-select" aria-label="Logo">
-                                <option selected>Select Logo (temp)</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
+                            <div id="logo-list" class="row">
+                                <label for="logo-pick" class="form-label">Choose Logo (temp)</label>
+                                <template id="logo-option">
+                                    <div id="logo-pick" class="col-4">
+                                        <label class="image-checkbox">
+                                            <input type="radio" name="logo" value="1">
+                                            <img src="images/placeholder.png" alt="" class="badge-image-ex">
+                                        </label>
+                                    </div>
+                                </template>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <label for="badge-pick" class="form-label">Choose Badge</label>
+                    </div>
+                    <div class="mb-3">
+                        <div id="badge-list" class="row">
+                            <label for="badge-pick" class="form-label">Choose Badge</label>
+                            <template id="badge-option">
                                 <div id="badge-pick" class="col-4">
                                     <label class="image-checkbox">
-                                        <input type="radio" name="badge" value="1">
-                                        <img src="images/badges/coin.png" alt="Badge 1" class="badge-image-ex">
+                                        <input type="radio" name="badge" value="">
+                                        <img src="images/placeholder.png" alt="" class="badge-image-ex">
                                     </label>
                                 </div>
-                                <div class="col-4">
-                                    <label class="image-checkbox">
-                                        <input type="radio" name="badge" value="2">
-                                        <img src="images/badges/fire.png" alt="Badge 2" class="badge-image-ex">
-                                    </label>
-                                </div>
-                                <div class="col-4">
-                                    <label class="image-checkbox">
-                                        <input type="radio" name="badge" value="3">
-                                        <img src="images/badges/flower.png" alt="Badge 3" class="badge-image-ex">
-                                    </label>
-                                </div>
-                                <div class="col-4">
-                                    <label class="image-checkbox">
-                                        <input type="radio" name="badge" value="4">
-                                        <img src="images/badges/heart.png" alt="Badge 4" class="badge-image-ex">
-                                    </label>
-                                </div>
-                                <div class="col-4">
-                                    <label class="image-checkbox">
-                                        <input type="radio" name="badge" value="5">
-                                        <img src="images/badges/sun.png" alt="Badge 5" class="badge-image-ex">
-                                    </label>
-                                </div>
-                            </div>
+                            </template>
                         </div>
                     </div>
+                    <input type="hidden" name="openingHour" id="op-time">
+                    <input type="hidden" name="closingHour" id="cl-time">
+                    <input type="hidden" name="lat">
+                    <input type="hidden" name="lng">
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
