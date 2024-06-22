@@ -127,6 +127,9 @@ function loadHubAvatar(hub, hubId, isBadgeCollected, screenLeftPercent, screenTo
         badgeImg.src = `images/badges/${hub.badge}.png`;
         badgeImg.alt = `${hub.badge} badge`;
 
+        const link = clone.querySelector("a");
+        link.href = `hub-page.html?id=${hubId}`
+
         map.appendChild(clone);
     } catch (error) {
         handleError('Error during hub-avatar loading:', error);
