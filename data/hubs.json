@@ -6,7 +6,8 @@
         "closingHour" : "0000",
         "mapCoordinates" : [32.07509444461784, 34.774994205870584],
         "location" : "Shnitzel Street 1",
-        "attendees" : []
+        "attendees" : [],
+        "avatar" : "castle"
     },
     "2" : {
         "name" : "Burgery",
@@ -15,7 +16,8 @@
         "closingHour" : "0000",
         "mapCoordinates" : [32.07143510946054, 34.81921554660643],
         "location" : "Somewhere Street 2",
-        "attendees" : []
+        "attendees" : [],
+        "avatar" : "chinese"
     },
     "3" : {
         "name" : "Tasty Food",
@@ -24,7 +26,8 @@
         "closingHour" : "2100",
         "mapCoordinates" : [32.07143510946054, 35],
         "location" : "Somewhere Street 3",
-        "attendees" : []
+        "attendees" : [],
+        "avatar" : "chinese"
     },
     "4" : {
         "name" : "Level Up",
@@ -50,7 +53,8 @@
                 "id" :4,
                 "avatar" :"mage"
             }
-        ]
+        ],
+        "avatar" : "chinese"
     },
     "5" : {
         "name" : "Parisis",
@@ -59,6 +63,7 @@
         "closingHour" : "2200",
         "mapCoordinates" : [33.06321492675298, 34.78372421163784],
         "location" : "Somewhere Street 5",
-        "attendees" : []
+        "attendees" : [],
+        "avatar" : "castle"
     }
 }
