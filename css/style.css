@@ -722,57 +722,26 @@ footer > a:hover{
     border-radius: 15px;
 }
 
-.carousel-item {
-    min-width: 100%;
-    transition: opacity 0.5s ease-in-out;
+#padding-about{
+    padding: 10px 20px 10px 20px;
 }
 
-.carousel-item img {
-    width: 100%;
-    border-radius: 15px;
-}
-
-.carousel-control {
-    position: absolute;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    z-index: 10;
-}
-
-.prev {
-    left: 20px;
-    padding-top: 50%;
-}
-
-.next {
-    right: 20px;
-    padding-top: 50%;
-}
 
 .about-container {
-    max-width: 400px;
-    margin: 20px auto;
-    border-radius: 10px;
-    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.about {
-    margin-top: 20px;
-}
-
-.about h3 {
+.about-container h3 {
     color: #FFF;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
-
-#about-text {
-    margin: 0;
+.about-container p{
     color: #FFF;
     font-size: 14px;
     font-style: normal;
