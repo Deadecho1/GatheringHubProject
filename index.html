@@ -18,23 +18,6 @@
 	<body>
         <div id="wrapper">
             <div class="bg-map">
-                <template id="avatar-template">
-                    <div class="avatar-container flex-container-column">
-                        <a href="#" class="name-tag-container">
-                            <p></p>
-                        </a>  
-                        <img class="avatar" src="images/placeholder.png" alt="Player"> 
-                    </div>
-                </template>
-                <template id="hub-avatar-template">
-                    <div class="avatar-container flex-container-column"> 
-                        <img class="avatar" src="images/placeholder.png" alt="Player"> 
-                        <a href="#" class="name-tag-container">
-                            <p>asd</p>
-                            <img src="images/badges/coin.png" alt="coin test">
-                        </a> 
-                    </div>
-                </template>
                 <div id="padding-wrapper">
                     <header>
                         <a href="index.html" id="logo"></a>
@@ -58,6 +41,24 @@
                         </div>
                     </header>
                 </div>
+                <template id="avatar-template">
+                    <div class="avatar-container flex-container-column">
+                        <a href="#" class="name-tag-container">
+                            <p></p>
+                        </a>  
+                        <img class="avatar" src="images/placeholder.png" alt="Player"> 
+                    </div>
+                </template>
+                <template id="hub-avatar-template">
+                    <div class="avatar-container flex-container-column"> 
+                        <div id="attendee-section" class="flex-container-row"></div>
+                        <img class="avatar" src="images/placeholder.png" alt="Player"> 
+                        <a href="#" class="name-tag-container">
+                            <p>asd</p>
+                            <img id="hub-badge" src="images/badges/coin.png" alt="coin test">
+                        </a> 
+                    </div>
+                </template>
                 <div class="clear"></div>
                 <footer>
                     <a href="list.html" id="search-button">

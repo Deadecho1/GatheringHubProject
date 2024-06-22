@@ -10,7 +10,7 @@ document.addEventListener('userDataReady', async function () {
     }
 });
 
-function loadAvatar(avatarName, playerName, nameColor, screenLeftPercent, screenTopPercent){
+function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screenTopPercent){
     try {
         const template = document.querySelector("#avatar-template");
 
@@ -20,9 +20,9 @@ function loadAvatar(avatarName, playerName, nameColor, screenLeftPercent, screen
         container.style.top = `${screenTopPercent}%`;
         container.style.left = `${screenLeftPercent}%`;
 
-        avatarImg = clone.querySelector("img");
+        let avatarImg = clone.querySelector("img");
         avatarImg.src = `images/avatars/${avatarName}.png`;
-        avatarImg.alt = `${avatarName}`;
+        avatarImg.alt = `${avatarName} avatar`;
 
         const txt = clone.querySelector("p");
         txt.textContent = playerName;
@@ -36,18 +36,6 @@ function loadAvatar(avatarName, playerName, nameColor, screenLeftPercent, screen
     
 }
 
-function loadHubAvatar(hubId, isBadgeCollected){
-    try {
-        const template = document.querySelector("#hub-avatar-template");
-
-        const map = document.querySelector(".bg-map");
-        const clone = template.content.cloneNode(true);
-        const container = clone.querySelector(".avatar-container");
-    } catch (error) {
-        handleError('Error during hub-avatar loading:', error);
-    }
-}
-
 async function loadAvatarData(usersCoordinates){
     let usersData = await fetchData('data/users.json');
 
@@ -55,10 +43,16 @@ async function loadAvatarData(usersCoordinates){
         for (const userid in usersCoordinates) {
             let currentUser = usersData[userid];
             let color = getNameColor(userid);
-            loadAvatar(currentUser.avatar, currentUser.name, color, usersCoordinates[userid].latitude, usersCoordinates[userid].longitude);
+            loadAvatar(currentUser.name, currentUser.avatar, color, usersCoordinates[userid].latitude, usersCoordinates[userid].longitude);
         }
-        color = getNameColor(userData.id);
-        loadAvatar(userData.avatar, userData.name, color, 50, 50);
+        if(userData){
+            color = getNameColor(userData.id);
+            loadAvatar(userData.name, userData.avatar, color, 50, 50);
+        }
+        else{
+            console.log("initialization.js missing");
+        }
+        
     }
 }
 
@@ -81,6 +75,63 @@ function getNameColor(id){
     }
 }
 
-function loadHubData(hubs){
+function loadHubData(hubsCoordinates){
+    if(!hubsData){
+        console.log("initialization.js missing in loadHubData");
+        return;
+    }
+    const map = document.querySelector(".bg-map");
+    for (const hubId in hubsCoordinates) {
+        const hub = hubsData[hubId];
+        loadHubAvatar(hub, hubId, false, hubsCoordinates[hubId].latitude, hubsCoordinates[hubId]. longitude, map);
+    }
+}
 
+function loadHubAvatar(hub, hubId, isBadgeCollected, screenLeftPercent, screenTopPercent, map){
+    try {
+        const template = document.querySelector("#hub-avatar-template");
+
+        const clone = template.content.cloneNode(true);
+        const container = clone.querySelector(".avatar-container");
+
+        container.style.top = `${screenTopPercent}%`;
+        container.style.left = `${screenLeftPercent}%`;
+
+        const attendeesSection = clone.querySelector("#attendee-section");
+        hub.attendees.slice(0, 3).forEach(attendee => {
+            let attendeeIcon = document.createElement("div");
+            attendeeIcon.classList.add("avatar-icon");
+            attendeeIcon.style.backgroundImage = `url("images/avatars/${attendee.avatar}_zoom.png")`;
+            if (userData && userData.friends.includes(attendee.id)) {
+                attendeeIcon.classList.add("friend");
+            }
+            attendeesSection.appendChild(attendeeIcon);
+        });
+        let extra = hub.attendees.length - 3;
+        if (extra > 0) {
+            let extraAttendeeText = document.createElement("h2");
+            extraAttendeeText.textContent = `+${extra}`;
+            extraAttendeeText.style.fontWeight = 600;
+            attendeesSection.appendChild(extraAttendeeText);
+        }
+
+        const avatarImg = clone.querySelector("img");
+        avatarImg.src = `images/hub_avatars/${hub.avatar}.png`;
+        avatarImg.alt = `${hub.avatar} hub avatar`;
+
+        const txt = clone.querySelector("p");
+        txt.textContent = hub.name;
+        txt.style.fontWeight = 600;
+
+        const badgeImg = clone.querySelector("#hub-badge");
+        badgeImg.src = `images/badges/${hub.badge}.png`;
+        badgeImg.alt = `${hub.badge} badge`;
+
+        const link = clone.querySelector("a");
+        link.href = `hub-page.html?id=${hubId}`
+
+        map.appendChild(clone);
+    } catch (error) {
+        handleError('Error during hub-avatar loading:', error);
+    }
 }

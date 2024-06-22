@@ -10,9 +10,15 @@
         }
     },
     "hubs" : {
+        "4" : {
+            "latitude" : 70, 
+            "longitude" : 20
+        },
         "1" : {
-            "latitude" : 32.055709039349665, 
-            "longitude" : 34.77681344400084
+            "latitude" : 20, 
+            "longitude" : 20
         }
+
+
     }
 }
