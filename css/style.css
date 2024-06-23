@@ -66,6 +66,19 @@ h1{
     transition: transform 0.5s ease;
 }
 
+#chat-toggle-button.expanded{
+    top: 12px;
+    bottom: auto;
+}
+
+#chat-send{
+    display: none;
+}
+
+#chat-send.visible{
+    display: block;
+}
+
 h2{
     color: #FFF;
     font-family: "Pixelify Sans";
