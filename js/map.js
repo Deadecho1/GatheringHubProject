@@ -10,6 +10,20 @@ document.addEventListener('userDataReady', async function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("chat-toggle-button").addEventListener("click", () => {
+        const chatContainer = document.getElementById("chat-box");
+        const rotateButton = document.getElementById("chat-toggle-button");
+        chatContainer.classList.toggle("expanded");
+        rotateButton.classList.toggle("rotated");
+        if (chatContainer.classList.contains("expanded")) {
+        } else {
+        }
+    });
+});
+
+
+
 function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screenTopPercent){
     try {
         const template = document.querySelector("#avatar-template");
