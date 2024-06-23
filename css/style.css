@@ -810,3 +810,87 @@ footer > a:hover{
 #more-link:hover {
     color: darkslateblue;
 }
+
+main {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    
+}
+
+main > section {
+    width: 45%;
+    height: 95px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background-color:#1E3847;
+    margin-top: 8px;
+    margin-right: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+main > section > img  {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background-color: #FFF;
+}
+main > section > div{
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    font-family: "Pixelify Sans";
+    font-size: 12px;
+    height: auto;
+    width: 100%;
+}
+main > section > div > h5  {
+    width: 50%;
+    height: 17px;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: "Pixelify Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 4px;
+}
+
+.company-logo {
+    background-color: #FFF;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+.company-logo > img{
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.card-container {
+    display: flex;
+}
+
+main > section .avatar-present{
+    height: 50px;
+    width: 100%;
+}
+
+.player-number{
+    display: flex;
+    width: 84px;
+    height: 17px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+}
