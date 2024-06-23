@@ -10,6 +10,21 @@ document.addEventListener('userDataReady', async function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("chat-toggle-button").addEventListener("click", () => {
+        const chatContainer = document.getElementById("chat-box");
+        const toggleButton = document.getElementById("chat-toggle-button");
+        const inputForm = document.getElementById("chat-send");
+        chatContainer.classList.toggle("expanded");
+        toggleButton.classList.toggle("rotated");
+        toggleButton.classList.toggle("expanded");
+        inputForm.classList.toggle("visible");
+        if (chatContainer.classList.contains("expanded")) {
+        } else {
+        }
+    });
+});
+
 function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screenTopPercent){
     try {
         const template = document.querySelector("#avatar-template");
