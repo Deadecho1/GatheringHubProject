@@ -667,7 +667,7 @@ footer > a:hover{
     background-color: white;
 }
 
-/*MO-page*/
+/*hub-page*/
 .hub-page-wrapper{
     background-color: #002D42;
 }
@@ -760,9 +760,7 @@ footer > a:hover{
     height: 16px;
     flex-shrink: 0;
 }
-.open-close {
-    margin-left: 4px !important;
-}
+
 
 #google-link{
     color: #5BDDEB;
@@ -776,7 +774,7 @@ footer > a:hover{
 
 #MO-passing-imgs{
     width: 100%;
-    height: auto;
+    height: 200px;
     background: #384248;
     display: flex;
 }
@@ -789,7 +787,7 @@ footer > a:hover{
     overflow: hidden;
     border-radius: 15px;
     width: 85%;
-    height: 50%;
+    height: 100%;
 }
 
 .carousel-inner {
@@ -800,6 +798,9 @@ footer > a:hover{
 
 #padding-about{
     padding: 10px 20px 10px 20px;
+}
+.img-h{
+    height: 180px !important;
 }
 
 
@@ -839,7 +840,7 @@ footer > a:hover{
     color: darkslateblue;
 }
 
-main {
+.stations {
     height: auto;
     width: 100%;
     display: flex;
@@ -849,7 +850,7 @@ main {
     
 }
 
-main > section {
+.stations > section {
     width: 45%;
     height: 95px;
     flex-shrink: 0;
@@ -861,14 +862,14 @@ main > section {
     gap: 8px;
 }
 
-main > section > img  {
+.stations > section > img  {
     width: 60px;
     height: 60px;
     flex-shrink: 0;
     border-radius: 8px;
     background-color: #FFF;
 }
-main > section > div{
+.stations > section > div{
     display: flex;
     flex-direction: column;
     color: #FFF;
@@ -877,8 +878,7 @@ main > section > div{
     height: auto;
     width: 100%;
 }
-main > section > div > h5  {
-    width: 50%;
+.stations > section > div > h5  {
     height: 17px;
     flex-shrink: 0;
     color: #FFF;
@@ -909,9 +909,9 @@ main > section > div > h5  {
     display: flex;
 }
 
-main > section .avatar-present{
+.stations> section .avatar-present{
     height: 50px;
-    width: 100%;
+    width: 100px;
 }
 
 .player-number{
