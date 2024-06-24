@@ -690,6 +690,9 @@ footer > a:hover{
     flex-shrink: 0;
     border-radius: 15px;
 }
+.align-badge{
+    align-self: center;
+}
 
 #right-column{
     position: relative;
