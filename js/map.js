@@ -14,14 +14,32 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("chat-toggle-button").addEventListener("click", () => {
         const chatContainer = document.getElementById("chat-box");
         const toggleButton = document.getElementById("chat-toggle-button");
-        const inputForm = document.getElementById("chat-send");
+        const chatInputContainer = document.getElementById("message-section");
+        const chatForm = document.getElementById("chat-send");
+        const chatInput = document.getElementById("chat-input");
+
+        chatInputContainer.classList.toggle("expanded");
         chatContainer.classList.toggle("expanded");
         toggleButton.classList.toggle("rotated");
         toggleButton.classList.toggle("expanded");
-        inputForm.classList.toggle("visible");
-        if (chatContainer.classList.contains("expanded")) {
-        } else {
-        }
+        chatForm.classList.toggle("visible");
+        
+        chatForm.addEventListener("submit", (event) => {
+            event.preventDefault(); 
+        
+            let messageText = chatInput.value.trim();
+    
+            if (messageText !== "") {
+                let newMessage = document.createElement("div");
+                newMessage.classList.add("message");
+                newMessage.textContent = messageText;
+    
+                chatInputContainer.insertBefore(newMessage, chatInputContainer.firstChild);
+    
+                chatInput.value = ""; 
+                chatContainer.scrollTop = 0;
+            }
+        });
     });
 });
 
