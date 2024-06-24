@@ -22,13 +22,12 @@ h1{
     margin-top: 10px;
 }
 
-#chat-box{
+#chat-box {
     width: 180px;
     padding: 10px;
     overflow: hidden;
     transition: max-height 0.5s ease;
     max-height: 40px;
-    width: 162px;
     border-radius: 7px;
     background: rgba(0, 0, 0, 0.50); 
     position: absolute;
@@ -39,16 +38,36 @@ h1{
     z-index: 3;
 }
 
-#chat-box.expanded{
-    overflow-y: auto;
+#chat-box.expanded {
+    padding-top: 20px;
     max-height: calc(100vh - 80px);
+    overflow: hidden;
+    width: 250px;
 }
 
-.rotated{
+#message-section {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+}
+
+#message-section.expanded {
+    overflow-y: auto;
+    height: 100%;
+}
+
+#chat-input {
+    --bs-body-bg: rgba(0, 0, 0, 0.50);
+    --bs-body-color: white;
+    height: 30px;
+}
+
+.rotated {
     transform: rotate(180deg);
 }
 
-.message{
+.message {
     margin-top: 5px;
     margin-bottom: 8px;
     color: #FFF;
@@ -59,19 +78,15 @@ h1{
     line-height: normal; 
 }
 
-#chat-toggle-button{
+#chat-toggle-button {
     position: absolute;
-    bottom: 12px;
-    right: 4px;
+    top: 10px; 
+    right: 10px;
     transition: transform 0.5s ease;
+    z-index: 4;
 }
 
-#chat-toggle-button.expanded{
-    top: 12px;
-    bottom: auto;
-}
-
-#chat-send{
+#chat-send {
     display: none;
 }
 
