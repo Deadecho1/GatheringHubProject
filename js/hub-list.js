@@ -141,8 +141,8 @@ function addHubFromQuery(){
         address : "",
         openingHour : "",
         closingHour : "",
-        lat : "",
-        lng : "",
+        phone: "",
+        rating:"",
         logo : "",
         badge : ""
     };
@@ -156,8 +156,9 @@ function addHubFromQuery(){
         "badge" : hubParams.badge,
         "openingHour" : hubParams.openingHour,
         "closingHour" : hubParams.closingHour,
-        "mapCoordinates" : [hubParams.lat, hubParams.lng],
         "location" : hubParams.address,
+        "phone" : hubParams.phone,
+        "rating": hubParams.rating,
         "attendees" : []
     }
 
