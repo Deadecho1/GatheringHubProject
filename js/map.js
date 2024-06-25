@@ -1,9 +1,12 @@
 document.addEventListener('userDataReady', async function () {
     try {
         const coordinatesData = await fetchData("data/coordinates.json");
-        if (coordinatesData) {
-            loadAvatarData(coordinatesData.users);
-            loadHubData(coordinatesData.hubs);
+        const usersData = await fetchData('data/users.json');
+        console.log("GET /users");
+        console.log("GET /coordinates");
+        if (coordinatesData && usersData) {
+            loadAvatarData(coordinatesData.users, usersData);
+            loadHubData(coordinatesData.hubs, usersData);
         }
     } catch (error) {
         handleError('Error during data processing:', error);
@@ -69,9 +72,7 @@ function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screen
     
 }
 
-async function loadAvatarData(usersCoordinates){
-    let usersData = await fetchData('data/users.json');
-
+async function loadAvatarData(usersCoordinates, usersData){
     if(usersData){
         for (const userid in usersCoordinates) {
             let currentUser = usersData[userid];
@@ -82,10 +83,6 @@ async function loadAvatarData(usersCoordinates){
             color = getNameColor(userData.id);
             loadAvatar(userData.name, userData.avatar, color, 50, 50);
         }
-        else{
-            console.log("initialization.js missing");
-        }
-        
     }
 }
 
@@ -108,19 +105,18 @@ function getNameColor(id){
     }
 }
 
-function loadHubData(hubsCoordinates){
+function loadHubData(hubsCoordinates, usersData){
     if(!hubsData){
-        console.log("initialization.js missing in loadHubData");
         return;
     }
     const map = document.querySelector(".bg-map");
     for (const hubId in hubsCoordinates) {
         const hub = hubsData[hubId];
-        loadHubAvatar(hub, hubId, false, hubsCoordinates[hubId].latitude, hubsCoordinates[hubId]. longitude, map);
+        loadHubAvatar(hub, hubId, usersData, false, hubsCoordinates[hubId].latitude, hubsCoordinates[hubId]. longitude, map);
     }
 }
 
-function loadHubAvatar(hub, hubId, isBadgeCollected, screenLeftPercent, screenTopPercent, map){
+function loadHubAvatar(hub, hubId, usersData, isBadgeCollected, screenLeftPercent, screenTopPercent, map){
     try {
         const template = document.querySelector("#hub-avatar-template");
 
@@ -134,7 +130,7 @@ function loadHubAvatar(hub, hubId, isBadgeCollected, screenLeftPercent, screenTo
         hub.attendees.slice(0, 3).forEach(attendee => {
             let attendeeIcon = document.createElement("div");
             attendeeIcon.classList.add("avatar-icon");
-            attendeeIcon.style.backgroundImage = `url("images/avatars/${attendee.avatar}_zoom.png")`;
+            attendeeIcon.style.backgroundImage = `url("images/avatars/${usersData[attendee.id].avatar}_zoom.png")`;
             if (userData && userData.friends.includes(attendee.id)) {
                 attendeeIcon.classList.add("friend");
             }

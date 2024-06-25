@@ -7,10 +7,10 @@ document.addEventListener('userDataReady', () => {
             addHubFromQuery();
         }
         populateHubList(hubsData);
-        if (currentLocation) {
-            showPosition();
+        if (defaultLocation) {
+            showPosition(defaultLocation);
         }
-        setLocation();
+        //setLocation(); disabled until full release
     } catch (error) {
         handleError(error, "Failed to initialize list");
     }
@@ -61,6 +61,9 @@ function handleDelete(event) {
         lstParse = listItem.id.split("-");
         itemId = lstParse[lstParse.length - 1];
         delete hubsData[itemId];
+
+        console.log(`DELETE /hubs/${itemId}`);
+        
         listItem.remove();
     }
 }
@@ -201,6 +204,25 @@ function openNavigationApp(latitude, longitude) {
     window.open(url, '_blank');
 }
 
+function showPosition(position) {
+    const { latitude, longitude } = position.coords;
+    setHubsDistance(latitude, longitude);
+}
+
+function setHubsDistance(lat, long) {
+    if(!document.getElementById("hub-list")){
+        return;
+    }
+    for (const id in hubsData) {
+        hub = hubsData[id];
+        const distance = distanceInKmBetweenEarthCoordinates(lat, long, hub.mapCoordinates[0], hub.mapCoordinates[1]);
+        const hubSection = document.getElementById(`item-${id}`);
+        hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
+    }
+}
+
+// currently not working because of key issues, will work on full release 
+/*
 function setLocation() {
     if (navigator.geolocation) {
         const options = {
@@ -215,11 +237,6 @@ function setLocation() {
     }
 }
 
-function showPosition(position) {
-    const { latitude, longitude } = position.coords;
-    setHubsDistance(latitude, longitude);
-}
-
 function showError(error) {
     const errorMessages = {
         1: "User denied the request for Geolocation.",
@@ -230,22 +247,4 @@ function showError(error) {
     console.log(errorMessages[error.code] || errorMessages[0]);
     setHubsDistance(defaultLocation[0], defaultLocation[1]);
 }
-
-function setHubsDistance(lat, long) {
-    if(!document.getElementById("hub-list")){
-        return;
-    }
-    for (const id in hubsData) {
-        hub = hubsData[id];
-        const distance = distanceInKmBetweenEarthCoordinates(lat, long, hub.mapCoordinates[0], hub.mapCoordinates[1]);
-        const hubSection = document.getElementById(`item-${id}`);
-        hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
-    }
-
-    /* DELETE ON FINAL VERSION */ 
-    if(temporaryQueryStringHub){
-        const distance = distanceInKmBetweenEarthCoordinates(lat, long, temporaryQueryStringHub.mapCoordinates[0], temporaryQueryStringHub.mapCoordinates[1]);
-        const hubSection = document.getElementById(`item-0`);
-        hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
-    }
-}
+*/

@@ -49,20 +49,16 @@
         "phone":"+972 4246891",
         "attendees" : [
             {
-                "id" : 2,
-                "avatar" : "hero"
+                "id" : 2
             },
             {
-                "id" : 3,
-                "avatar" : "princess"
+                "id" : 3
             },
             {
-                "id" : 3,
-                "avatar" : "mage"
+                "id" :4
             },
             {
-                "id" :4,
-                "avatar" :"mage"
+                "id" : 5
             }
         ],
         "avatar" : "chinese",
