@@ -63,7 +63,7 @@ function handleDelete(event) {
         delete hubsData[itemId];
 
         console.log(`DELETE /hubs/${itemId}`);
-        
+
         listItem.remove();
     }
 }
@@ -90,10 +90,18 @@ function setupHubStatus(hubStatus, hub) {
     statusH2.textContent = isOpen ? "Open" : "Closed";
     statusH2.classList.add(isOpen ? "text-open" : "text-close");
 
+    setAttendees(hubStatus, hub);
+}
+
+async function setAttendees(hubStatus, hub){
+    const response = await fetch("data/users.json");
+    const usersData = await response.json();
+    console.log("GET /users");
+
     hub.attendees.slice(0, 3).forEach(attendee => {
         let attendeeIcon = document.createElement("div");
         attendeeIcon.classList.add("avatar-icon");
-        attendeeIcon.style.backgroundImage = `url("images/avatars/${attendee.avatar}_zoom.png")`;
+        attendeeIcon.style.backgroundImage = `url("images/avatars/${usersData[attendee.id].avatar}_zoom.png")`;
         if (userData && userData.friends.includes(attendee.id)) {
             attendeeIcon.classList.add("friend");
         }
