@@ -8,6 +8,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="js/initialization.js"></script>
+        <script src="js/misc.js"></script>
         <script src="js/hub-page.js"></script> 
         <link rel="stylesheet" href="css/style.css">     
         <title>Gathering Hub</title> 
@@ -18,24 +20,24 @@
                 <div id="padding-wrapper">
                     <div class="flex-container-row">
                         <section id="left-column">
-                                <img class="hub-page-logo" src="images/hubs/4/logo.png">
+                                <img class="hub-page-logo" src="images/hubs/4/logo.png" alt="hub logo">
                                 <img class="badge-image align-badge" src="images/badges/coin.png" alt="Hub badge">       
                         </section>
                         <section id="right-column">
                             <section id="hun-title-x">
-                                <h1>Level Up Gaming Bar</h1>
+                                <h1>...</h1>
                                 <button id="x-icon"></button>
                             </section>
                             <section id="head-info">
                                 <section id="h2-icon" class="flex-container">
-                                    <h2 id="address">Hamburger street</h2>
+                                    <h2 id="address">...</h2>
                                     <button class="location-icon"></button>
                                 </section>
                                 <section id="h2-icon" class="flex-container">
                                     <button class="phone-icon"></button>
-                                    <h2>+972 4246891</h2>
+                                    <h2 id="phone-number">...</h2>
                                 </section>
-                                <section class="flex-container">
+                                <section class="flex-container fix-gap">
                                     <div class="dropdown">
                                         <button id="sort-select" class="btn btn-extend btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Opening hours
@@ -46,7 +48,7 @@
                                         </ul>
                                     </div>
                                     <div id="hub-status" >
-                                        <h2>Open Status</h2>
+                                        <h2 id="text-open-close">Open Status</h2>
                                     </div> 
                                 </section>
                                 <section id="h2-icon" class="flex-container">
@@ -97,7 +99,7 @@
             <section>
                 <div id="padding-wrapper">
                     <section id="card-cotainer">
-                        <section class="stations">
+                        <section class="stations-list">
                             <section>
                                 <img src="images/games/games_logo/Smash Logo 1.png" alt="Smash Logo" title="" />
                                 <section class="company-logo"><img src="images/games/compeny_logo/Switch Logo 1.png" alt="Switch Logo" title="" /></section>

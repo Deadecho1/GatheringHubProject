@@ -668,6 +668,9 @@ footer > a:hover{
 }
 
 /*hub-page*/
+.fix-gap{
+    gap: 10px;
+}
 .hub-page-wrapper{
     background-color: #002D42;
 }
@@ -843,7 +846,7 @@ footer > a:hover{
     color: darkslateblue;
 }
 
-.stations {
+.stations-list {
     height: auto;
     width: 100%;
     display: flex;
@@ -853,7 +856,7 @@ footer > a:hover{
     
 }
 
-.stations > section {
+.stations-list > section {
     width: 45%;
     height: 95px;
     flex-shrink: 0;
@@ -865,14 +868,14 @@ footer > a:hover{
     gap: 8px;
 }
 
-.stations > section > img  {
+.stations-list > section > img  {
     width: 60px;
     height: 60px;
     flex-shrink: 0;
     border-radius: 8px;
     background-color: #FFF;
 }
-.stations > section > div{
+.stations-list > section > div{
     display: flex;
     flex-direction: column;
     color: #FFF;
@@ -881,7 +884,7 @@ footer > a:hover{
     height: auto;
     width: 100%;
 }
-.stations > section > div > h5  {
+.stations-list > section > div > h5  {
     height: 17px;
     flex-shrink: 0;
     color: #FFF;
@@ -912,7 +915,7 @@ footer > a:hover{
     display: flex;
 }
 
-.stations> section .avatar-present{
+.stations-list> section .avatar-present{
     height: 50px;
     width: 100px;
 }
