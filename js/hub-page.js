@@ -16,6 +16,9 @@ function SetUpPage() {
     document.querySelector('h2#address').textContent = hubsData[4].location;
     document.querySelector('h2#phone-number').textContent = hubsData[4].phone;
     setupHubStatus(hubsData[4]);
+    updateLogo('images/hubs/4/logo.png'); 
+    updateBadge('images/badges/coin.png');
+    updateCarousel(hubsData[4].images);
     
 }
 
@@ -70,4 +73,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+function updateLogo(logoPath) {
+    const logoElement = document.querySelector('.hub-page-logo');
+    if (logoElement) {
+        logoElement.src = logoPath;
+    }
+}
+
+function updateBadge(badgePath) {
+    const badgeElement = document.querySelector('.badge-image');
+    if (badgeElement) {
+        badgeElement.src = badgePath;
+    }
+}
+function updateCarousel(imagePaths) {
+    const carouselInner = document.querySelector('.carousel-inner');
+    carouselInner.innerHTML = ''; 
+    imagePaths.forEach((path, index) => {
+        const activeClass = index === 0 ? 'active' : '';
+        const carouselItem = document.createElement('div');
+        carouselItem.className = `carousel-item ${activeClass}`;
+        const img = document.createElement('img');
+        img.src = path;
+        img.className = 'd-block w-100';
+        carouselItem.appendChild(img);
+        carouselInner.appendChild(carouselItem);
+    });
+}
+
+
+
+
+
+
+
+
 
