@@ -1,24 +1,29 @@
 
 document.addEventListener('userDataReady', () => {
     try {
-        console.log('hubsData:', hubsData);
-        // window.location.reload();
-        SetUpPage();
-        
-        
+        console.log(hubsData);
+        const queryString = window.location.search;
+        const hubId = new URLSearchParams(queryString)?.get('id');
+        const hub = hubsData?.[hubId];
+
+        if (!hubId || !hub) {
+            throw "No hub id";
+        }
+
+        SetUpPage(hubId, hub);
     } catch (error) {
         handleError(error, "Failed to initialize list");
     }
 });
 
-function SetUpPage() {
-    document.querySelector('h1').textContent = hubsData[4].name;
-    document.querySelector('h2#address').textContent = hubsData[4].location;
-    document.querySelector('h2#phone-number').textContent = hubsData[4].phone;
-    setupHubStatus(hubsData[4]);
-    updateLogo('images/hubs/4/logo.png'); 
-    updateBadge('images/badges/coin.png');
-    updateCarousel(hubsData[4].images);
+function SetUpPage(hubId, hub) {
+    document.querySelector('h1').textContent = hub.name;
+    document.querySelector('h2#address').textContent = hub.location;
+    document.querySelector('h2#phone-number').textContent = hub.phone;
+    setupHubStatus(hub);
+    updateLogo(`images/hubs/${hubId}/logo.png`);
+    updateBadge(`images/badges/${hub.badge}.png`);
+    updateCarousel(hub.images);
     
 }
 
@@ -47,10 +52,11 @@ function addLeadingZero(num) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.getElementById('x-icon');
-
-    backButton.addEventListener('click', () => {
-        history.back();
-    });
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            window.location.href = 'hub-list.html';
+        });
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -81,12 +87,15 @@ function updateLogo(logoPath) {
     }
 }
 
-function updateBadge(badgePath) {
-    const badgeElement = document.querySelector('.badge-image');
-    if (badgeElement) {
-        badgeElement.src = badgePath;
-    }
+ function updateBadge(badgePath) {
+     const badgeElement = document.querySelector('.badge-image');
+     if (badgeElement) {
+         badgeElement.src = badgePath;
+     }
 }
+
+
+
 function updateCarousel(imagePaths) {
     const carouselInner = document.querySelector('.carousel-inner');
     carouselInner.innerHTML = ''; 
