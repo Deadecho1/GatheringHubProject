@@ -50,21 +50,13 @@ function addLeadingZero(num) {
     return num < 10 ? `0${num}` : String(num);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const backButton = document.getElementById('x-icon');
-    if (backButton) {
-        backButton.addEventListener('click', () => {
-            window.location.href = 'hub-list.html';
-        });
-    }
-});
 
 document.addEventListener('DOMContentLoaded', () => {
-    const backButton = document.getElementById('x-icon');
+     const backButton = document.getElementById('x-icon');
 
-    backButton.addEventListener('click', () => {
-        history.back();
-    });
+     backButton.addEventListener('click', () => {
+         history.back();
+     });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -93,7 +85,6 @@ function updateLogo(logoPath) {
          badgeElement.src = badgePath;
      }
 }
-
 
 
 function updateCarousel(imagePaths) {

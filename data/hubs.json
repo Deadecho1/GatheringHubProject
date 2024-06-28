@@ -10,7 +10,10 @@
         "phone":"+972 4246891",
         "attendees" : [],
         "avatar" : "castle",
-        "images": [],
+        "images": [
+            "images/hub_imgs/1/hub_img.jpg",
+            "images/hub_imgs/1/hub_img2.jpg"
+        ],
         "stations" : []
     },
     "2" : {
@@ -24,7 +27,10 @@
         "phone":"+972 4246891",
         "attendees" : [],
         "avatar" : "chinese",
-        "images": [],
+        "images": [
+            "images/hub_imgs/2/hub_img.jpg",
+            "images/hub_imgs/2/hub_img2.jpg"
+        ],
         "stations" : []
     },
     "3" : {
@@ -38,7 +44,10 @@
         "phone":"+972 4246891",
         "attendees" : [],
         "avatar" : "chinese",
-        "images": [],
+        "images": [
+            "images/hub_imgs/3/hub_img.jpg",
+            "images/hub_imgs/3/hub_img2.jpg"
+        ],
         "stations" : []
     },
     "4" : {
@@ -125,7 +134,10 @@
         "phone":"+972 4246891",
         "attendees" : [],
         "avatar" : "castle",
-        "images": [],
+        "images": [
+            "images/hub_imgs/5/hub_img.jpg",
+            "images/hub_imgs/5/hub_img2.jpg"
+        ],
         "stations" : []
     }
 }
