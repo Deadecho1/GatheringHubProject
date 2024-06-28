@@ -791,7 +791,6 @@ footer > a:hover{
     max-width: 100%;
     margin: auto;
     overflow: hidden;
-    border-radius: 15px;
     width: 85%;
     height: 100%;
 }
@@ -799,12 +798,20 @@ footer > a:hover{
 .carousel-inner {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    border-radius: 15px;
 }
 
 #padding-about{
-    padding: 10px 20px 10px 20px;
+    padding: 0px 20px 10px 20px;
 }
+
+.fixed-size-image{
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    max-width: none;
+    border-radius: 15px;
+}
+
 .img-h{
     height: 180px !important;
 }
@@ -831,8 +838,26 @@ footer > a:hover{
     font-weight: 400;
     line-height: normal;
 }
+#content-section {
+    position: relative;
+    margin: 20px;
+}
+
+#content {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Show only 3 lines */
+    -webkit-box-orient: vertical;
+    transition: max-height 0.5s ease;
+}
+
+#content.expanded {
+    -webkit-line-clamp: unset; /* Show all lines */
+    max-height: none;
+}
 
 #more-link {
+    background-color: #002D42;
     color: #5BDDEB;
     font-size: 14px;
     font-style: normal;

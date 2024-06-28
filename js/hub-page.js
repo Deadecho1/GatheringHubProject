@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     Array.from(navButtons).forEach(button => {
         button.addEventListener('click', () => {
-            const latitude = hubsData[4].mapCoordinates[0]; // Replace with the actual latitude
-            const longitude = hubsData[4].mapCoordinates[1]; // Replace with the actual longitude
+            const latitude = hubsData[4].mapCoordinates[0];
+            const longitude = hubsData[4].mapCoordinates[1]; 
             const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
             window.open(url, '_blank');
         });
@@ -96,11 +96,29 @@ function updateCarousel(imagePaths) {
         carouselItem.className = `carousel-item ${activeClass}`;
         const img = document.createElement('img');
         img.src = path;
-        img.className = 'd-block w-100';
+        img.className = 'fixed-size-image d-block w-100 img-h';
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
     });
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const moreButton = document.getElementById('more-link');
+    const content = document.getElementById('content');
+    moreButton.addEventListener('click', () => {
+        if (content.classList.contains('collapsed')) {
+            content.classList.remove('collapsed');
+            content.classList.add('expanded');
+            moreButton.textContent = 'Less';
+        } else {
+            content.classList.remove('expanded');
+            content.classList.add('collapsed');
+            moreButton.textContent = 'More';
+        }
+    });
+});
+
+
 
 
 
