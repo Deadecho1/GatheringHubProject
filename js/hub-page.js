@@ -96,7 +96,7 @@ function updateCarousel(imagePaths) {
         carouselItem.className = `carousel-item ${activeClass}`;
         const img = document.createElement('img');
         img.src = path;
-        img.className = 'fixed-size-image d-block w-100 img-h';
+        img.className = 'd-block w-100 img-h fixed-size-image';
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
     });
