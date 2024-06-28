@@ -826,12 +826,19 @@ footer > a:hover{
     font-weight: 400;
     line-height: normal;
 }
-.about-container p{
+.p-more-container
+{
+    display:flex;
+    flex-wrap: wrap; 
+    align-items: flex-end;
+}
+.p-more-container p{
     color: #FFF;
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 0;
 }
 #content-section {
     position: relative;
@@ -854,16 +861,16 @@ footer > a:hover{
 #more-link {
     background-color: #002D42;
     color: #5BDDEB;
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
+    align-self:auto;
     cursor: pointer;
 }
 
 #more-link:hover {
-    color: darkslateblue;
 }
 
 .stations-list {
