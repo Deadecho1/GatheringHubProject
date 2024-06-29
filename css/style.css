@@ -17,6 +17,18 @@ h1{
     margin: 0px; 
 }
 
+h5{
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: "Pixelify Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 4px;
+    margin-bottom: 0px;
+}
+
 #create-hub-header{
     font-size: 30px;
     margin-top: 10px;
@@ -377,8 +389,11 @@ header{
 }
 
 #sort-select{
-    width: 140px;
-    height: 27px;
+    width: 140px; 
+}
+
+#hour-dropdown{
+    width: 114px; 
 }
 
 .svg-button{
@@ -414,6 +429,19 @@ header{
     font-family: "Pixelify Sans";
 }
 
+.dropdown > ul{
+    color: #002D42;
+    font-family: "Pixelify Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+}
+
+.dropdown-menu.fix{
+    --bs-dropdown-border-radius: 4px;
+}
+
 .btn-extend{
     display: flex;
     justify-content: space-between;
@@ -429,6 +457,21 @@ header{
     line-height: normal; 
     --bs-btn-border-color: none;
     border-radius: 3px;
+}
+
+.btn-extend.clean{
+    padding: 0px;
+    background-color: #FFF0;;
+    color: #D9D9D9;
+    font-family: "Pixelify Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+}
+
+.btn-extend.clean:hover{
+    color: #d9d9d995;
 }
 
 button > p{
@@ -486,7 +529,7 @@ button > p{
 
 .clear{
     clear: both;
-    height: 45px;
+    height: 60px;
 }
 
 footer{
@@ -604,7 +647,7 @@ footer > a:hover{
 }
 
 #hub-status{
-    margin-bottom: 6px;
+    text-align: center;
 }
 
 #hub-images-section{
@@ -616,6 +659,12 @@ footer > a:hover{
     height: 50px;
     width: 50px;
     object-fit: contain;
+}
+
+.badge-image.large{
+    width: 57px;
+    height: 58px;
+    margin-bottom: 11px; 
 }
 
 .not-collected{
@@ -669,38 +718,24 @@ footer > a:hover{
 
 /*hub-page*/
 .fix-gap{
-    gap: 2px;
+    gap: 18px;
 }
 .hub-page-wrapper{
     background-color: #002D42;
 }
 
-#MO-firstSection{
-    width: 100%;
-    height: 200px;
-    display: flex;
-}
-#MO-firstSection div{    
-    width: 100%;
-    height: 100%;
-}
 .flex-container-row{
     display: flex;
     flex-direction: row;
-    justify-content: center; 
-    align-items: center;
 }
 
 #left-column{
     position: relative;
     display: flex;
-    justify-content: space-between;
-    height: 100%;
-    width: auto;
-    padding-top: 20px;
-    box-sizing: border-box;
     flex-direction: column;
-
+    padding-right: 20px;
+    padding-top: 20px;
+    gap: 11px;
 }
 .hub-page-logo{
     width: 100px;
@@ -717,7 +752,7 @@ footer > a:hover{
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 75%;
+    width: 100%;
     padding-top: 20px;
     box-sizing: border-box;
 
@@ -743,13 +778,7 @@ footer > a:hover{
     display: flex;
     margin-top: 10px;
     flex-direction: column;
-    row-gap: 10px;
 
-}
-
-#h2-icon{
-    align-items: end;
-    gap: 10px;
 }
 
 .phone-icon{
@@ -758,12 +787,15 @@ footer > a:hover{
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+    background-position: center; 
 }
 .rating-icon{
-    background: url("../images/Icons/GH_Group_1\ 1.svg");
-    position: relative;
-    width: 68px;
+    background: url("../images/Icons/stars-rating.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 70px;
     height: 16px;
+    margin-right: 10px;
     flex-shrink: 0;
 }
 
@@ -771,18 +803,15 @@ footer > a:hover{
 #google-link{
     color: #5BDDEB;
     font-family: "Pixelify Sans";
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    text-decoration-line: underline;
+    text-decoration-line: underline; 
 }
 
 #MO-passing-imgs{
-    width: 100%;
-    height: 200px;
     background: #384248;
-    display: flex;
 }
 .carousel {
     padding-top: 10px;
@@ -874,23 +903,18 @@ footer > a:hover{
 }
 
 .stations-list {
-    height: auto;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: space-between;
-    
+    column-gap: 34px;    
+    row-gap: 15px;
 }
 
 .stations-list > section {
-    width: 45%;
-    height: 95px;
+    width: 140px;
+    height: 95px; 
     flex-shrink: 0;
     border-radius: 8px;
     background-color:#1E3847;
-    margin-top: 8px;
-    margin-right: 8px;
     display: flex;
     gap: 8px;
 }
@@ -898,33 +922,24 @@ footer > a:hover{
 .stations-list > section > img  {
     width: 60px;
     height: 60px;
+    object-fit: contain;
     flex-shrink: 0;
     border-radius: 8px;
     background-color: #FFF;
 }
+
 .stations-list > section > div{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     color: #FFF;
     font-family: "Pixelify Sans";
     font-size: 12px;
     height: auto;
-    width: 100%;
-}
-.stations-list > section > div > h5  {
-    height: 17px;
-    flex-shrink: 0;
-    color: #FFF;
-    font-family: "Pixelify Sans";
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-top: 4px;
+    width: 74px;
 }
 
 .company-logo {
-    background-color: #FFF;
     height: 15px;
     width: 15px;
     position: absolute;
@@ -943,8 +958,10 @@ footer > a:hover{
 }
 
 .stations-list> section .avatar-present{
-    height: 50px;
-    width: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
 }
 
 .player-number{
@@ -954,6 +971,7 @@ footer > a:hover{
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
+    padding-top: 0px;
 }
 
 .avatar-present{
@@ -961,4 +979,12 @@ footer > a:hover{
     height: 20px;
     flex-shrink: 0;
     border-radius: 60px;
+}
+
+.info-line{
+    margin-bottom: 10px;
+}
+
+.info-line.fix{
+    margin-bottom: 7px;
 }

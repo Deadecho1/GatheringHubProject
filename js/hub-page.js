@@ -24,7 +24,6 @@ function SetUpPage(hubId, hub) {
     updateLogo(`images/hubs/${hubId}/logo.png`);
     updateBadge(`images/badges/${hub.badge}.png`);
     updateCarousel(hub.images);
-    
 }
 
 
@@ -96,7 +95,9 @@ function updateCarousel(imagePaths) {
         carouselItem.className = `carousel-item ${activeClass}`;
         const img = document.createElement('img');
         img.src = path;
-        img.className = 'd-block w-100 img-h fixed-size-image';
+        img.className = 'd-block w-100';
+        img.style.objectFit = "contain";
+        img.style.borderRadius = "15px";
         carouselItem.appendChild(img);
         carouselInner.appendChild(carouselItem);
     });
