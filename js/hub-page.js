@@ -23,6 +23,7 @@ async function SetUpPage(hubId, hub) {
     setupLocationButton(hubId);
     setupHubStatus(hub);
     setupHubWorkingHours(hub);
+    setUpRating(hub);
     setupDescription(hub);
     setupStations(hub);
     setupMoreButton();
@@ -214,4 +215,19 @@ function setupMoreButton()
             moreButton.textContent = 'More';
         }
     });
+}
+
+function setUpRating(hub) {
+    const starRating = document.getElementById('star-rating');
+    starRating.innerHTML = ''; 
+
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.classList.add('star');
+        star.innerHTML = i <= hub.rating ? '&#9733;' : '&#9734;'; 
+        if (i <= hub.rating) {
+            star.classList.add('filled');
+        }
+        starRating.appendChild(star);
+    }
 }

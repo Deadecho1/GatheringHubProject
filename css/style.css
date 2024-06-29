@@ -789,16 +789,17 @@ footer > a:hover{
     flex-shrink: 0;
     background-position: center; 
 }
-.rating-icon{
-    background: url("../images/Icons/stars-rating.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 70px;
-    height: 16px;
-    margin-right: 10px;
-    flex-shrink: 0;
+.star {
+    font-size: 20px;
+    color: gray;
+}
+.star.filled {
+    color: gold;
 }
 
+.fix-gap{
+    margin-left: 4px;
+}
 
 #google-link{
     color: #5BDDEB;
@@ -808,6 +809,7 @@ footer > a:hover{
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline; 
+    align-self: center;
 }
 
 #MO-passing-imgs{
@@ -900,6 +902,7 @@ footer > a:hover{
 }
 
 #more-link:hover {
+    background-color: #002D42;
 }
 
 .stations-list {
