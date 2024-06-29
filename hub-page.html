@@ -89,11 +89,7 @@
                     <div class="card-body">
                         <h3>About</h3>
                         <section class="p-more-container">
-                            <p id="content" class="collapsed" > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec urna ac metus aliquet efficitur in eu augue. 
-                                Etiam eu rhoncus mauris, at rhoncus massa. Pellentesque id nunc condimentum, bibendum dolor a, vulputate velit. 
-                                Aenean facilisis lectus vel eros luctus ultrices. Sed vel tortor ex. Vestibulum nec dolor ac dolor blandit tincidunt at et urna.                                    
-                            
-                            </p>  
+                            <p id="content" class="collapsed"></p>  
                             <button id="more-link">More</button>
                         </section> 
                     </div>
@@ -102,29 +98,22 @@
             <section>
                 <div id="padding-wrapper">
                     <section class="stations-list">
-                        <section class="station">
-                            <img src="images/games/game_logos/ssbu.jpg" alt="ssbu Logo" title="" />
-                            <section class="company-logo"><img src="images/games/platforms/switch.png" alt="Switch Logo" title="" /></section>
-                            <div>
-                                <div>
-                                    <h5>station 1</h5>
-                                    <section class="avatar-present">
-                                        <div class="avatar-icon friend" style="background-image: url(&quot;images/avatars/hero_zoom.png&quot;);"></div>
-                                    </section>
-                                </div>
-                                <h5 class="player-number">2/4 player</h5>
-                            </div>
-                        </section> 
-                        <section>
-                            <img src="images/games/game_logos/party_animals.jpg" alt="party_animals Logo" title="" />
-                            <section class="company-logo"><img src="images/games/platforms/xbox.png" alt="Switch Logo" title="" /></section>
-                            <div>
-                                <h5>station 1</h5>
-                                <section class="avatar-present">
+                        <template id="station-card-template">
+                            <section class="station">
+                                <img src="images/placeholder.png" alt="" title="" />
+                                <section class="company-logo">
+                                    <img src="images/games/platforms/switch.png" alt="Switch Logo" title="" />
                                 </section>
-                                <h5 class="player-number">2/4 player</h5>
-                            </div>
-                        </section> 
+                                <div>
+                                    <div>
+                                        <h5 id="station-name"></h5>
+                                        <section class="avatar-present">
+                                        </section>
+                                    </div>
+                                </div>
+                                <h5 class="player-number"></h5>
+                            </section> 
+                        </template>
                     </section>
                 </div>   
             </section>                 

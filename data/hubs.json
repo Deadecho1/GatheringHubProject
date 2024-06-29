@@ -7,14 +7,36 @@
         "mapCoordinates" : [32.07509444461784, 34.774994205870584],
         "location" : "Shnitzel Street 1",
         "rating": "3",
-        "phone":"+972 4246891",
+        "phone":"+972 4246894",
         "attendees" : [],
         "avatar" : "castle",
-        "images": [
-            "images/hub_imgs/1/hub_img.jpg",
-            "images/hub_imgs/1/hub_img2.jpg"
+        "stations" : [
+            {
+                "stationID": "station 1",
+                "platform": "switch",
+                "game": "ssbu",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
+            },
+            {
+                "stationID": "station 2",
+                "platform": "xbox",
+                "game": "",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
+            },
+            {
+                "stationID": "station 3",
+                "platform": "xbox",
+                "game": "party_animals",
+                "maxPlayers": "8",
+                "currPlayers": "0",
+                "players" : []
+            }
         ],
-        "stations" : []
+        "about" : "This is Crispy Shnitzel. This is Crispy Shnitzel. This is Crispy Shnitzel.This is Crispy Shnitzel.This is Crispy Shnitzel. This is Crispy Shnitzel. This is Crispy Shnitzel. This is Crispy Shnitzel. This is Crispy Shnitzel. This is Crispy Shnitzel."
     },
     "2" : {
         "name" : "Burgery",
@@ -24,14 +46,36 @@
         "mapCoordinates" : [32.07143510946054, 34.81921554660643],
         "location" : "Somewhere Street 2",
         "rating": "4",
-        "phone":"+972 4246891",
+        "phone":"+972 4246893",
         "attendees" : [],
         "avatar" : "chinese",
-        "images": [
-            "images/hub_imgs/2/hub_img.jpg",
-            "images/hub_imgs/2/hub_img2.jpg"
+        "stations" : [
+            {
+                "stationID": "station 1",
+                "platform": "switch",
+                "game": "ssbu",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
+            },
+            {
+                "stationID": "station 2",
+                "platform": "xbox",
+                "game": "",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
+            },
+            {
+                "stationID": "station 3",
+                "platform": "xbox",
+                "game": "party_animals",
+                "maxPlayers": "8",
+                "currPlayers": "0",
+                "players" : []
+            }
         ],
-        "stations" : []
+        "about" : "This is Burgery."
     },
     "3" : {
         "name" : "Tasty Food",
@@ -41,14 +85,36 @@
         "mapCoordinates" : [32.07143510946054, 35],
         "location" : "Somewhere Street 3",
         "rating": "4",
-        "phone":"+972 4246891",
+        "phone":"+972 4246892",
         "attendees" : [],
         "avatar" : "chinese",
-        "images": [
-            "images/hub_imgs/3/hub_img.jpg",
-            "images/hub_imgs/3/hub_img2.jpg"
-        ],
-        "stations" : []
+        "stations" : [
+        {
+            "stationID": "station 1",
+            "platform": "switch",
+            "game": "ssbu",
+            "maxPlayers": "4",
+            "currPlayers": "0",
+            "players" : []
+        },
+        {
+            "stationID": "station 2",
+            "platform": "xbox",
+            "game": "",
+            "maxPlayers": "4",
+            "currPlayers": "0",
+            "players" : []
+        },
+        {
+            "stationID": "station 3",
+            "platform": "xbox",
+            "game": "party_animals",
+            "maxPlayers": "8",
+            "currPlayers": "0",
+            "players" : []
+        }
+    ],
+        "about" : "This is Tasty Food."
     },
     "4" : {
         "name" : "Level Up",
@@ -58,7 +124,7 @@
         "mapCoordinates" : [32.06321492675298, 34.78372421163784],
         "location" : "Somewhere Street 4",
         "rating": "4",
-        "phone":"+972 4246891",
+        "phone":"+972 4246895",
         "attendees" : [
             {
                 "id" : 2
@@ -74,54 +140,57 @@
             }
         ],
         "avatar" : "chinese",
-        "images": [
-            "images/hub_imgs/4/hub_img.jpg",
-            "images/hub_imgs/4/hub_img2.jpg"
-        ],
         "stations" : [
             {
                 "stationID": "station 1",
-                "company-logo": "switch",
-                "game-logo": "superSmashBro",
-                "max-players": "4",
-                "curr-players": "0"
+                "platform": "switch",
+                "game": "ssbu",
+                "maxPlayers": "4",
+                "currPlayers": "4",
+                "players" : [2, 3, 4, 5]
             },
             {
                 "stationID": "station 2",
-                "company-logo": "xbox",
-                "game-logo": "",
-                "max-players": "4",
-                "curr-players": "0"
+                "platform": "xbox",
+                "game": "",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
             },
             {
                 "stationID": "station 3",
-                "company-logo": "xbox",
-                "game-logo": "party-animal",
-                "max-players": "8",
-                "curr-players": "0"
+                "platform": "xbox",
+                "game": "party_animals",
+                "maxPlayers": "8",
+                "currPlayers": "0",
+                "players" : []
             },
             {
                 "stationID": "station 4",
-                "company-logo": "pc",
-                "game-logo": "League_of_Legends",
-                "max-players": "1",
-                "curr-players": "0"
+                "platform": "pc",
+                "game": "lol",
+                "maxPlayers": "1",
+                "currPlayers": "0",
+                "players" : []
             },
             {
                 "stationID": "station 5",
-                "company-logo": "switch",
-                "game-logo": "",
-                "max-players": "2",
-                "curr-players": "0"
+                "platform": "switch",
+                "game": "",
+                "maxPlayers": "2",
+                "currPlayers": "0",
+                "players" : []
             },
             {
                 "stationID": "station 6",
-                "company-logo": "xbox",
-                "game-logo": "",
-                "max-players": "4",
-                "curr-players": "0"
+                "platform": "xbox",
+                "game": "",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
             }
-        ]
+        ],
+        "about" : "This is Level Up."
     },
     "5" : {
         "name" : "Parisis",
@@ -131,13 +200,35 @@
         "mapCoordinates" : [33.06321492675298, 34.78372421163784],
         "location" : "Somewhere Street 5",
         "rating": "4",
-        "phone":"+972 4246891",
+        "phone":"+972 4246898",
         "attendees" : [],
         "avatar" : "castle",
-        "images": [
-            "images/hub_imgs/5/hub_img.jpg",
-            "images/hub_imgs/5/hub_img2.jpg"
+        "stations" : [
+            {
+                "stationID": "station 1",
+                "platform": "switch",
+                "game": "ssbu",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
+            },
+            {
+                "stationID": "station 2",
+                "platform": "xbox",
+                "game": "",
+                "maxPlayers": "4",
+                "currPlayers": "0",
+                "players" : []
+            },
+            {
+                "stationID": "station 3",
+                "platform": "xbox",
+                "game": "party_animals",
+                "maxPlayers": "8",
+                "currPlayers": "0",
+                "players" : []
+            }
         ],
-        "stations" : []
+        "about" : "This is Parisis."
     }
 }
