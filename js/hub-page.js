@@ -36,20 +36,21 @@ async function SetUpPage(hubId, hub) {
 async function getImagePaths(hubId) {
     let paths = [];
     let i = 1;
-    let stop = false;
-    
-    while (!stop) {
+
+    while (true) {
         try {
             const response = await fetch(`images/hubs/${hubId}/image_${i}.jpg`);
             if (response.ok) {
                 paths.push(`images/hubs/${hubId}/image_${i}.jpg`);
-            } else {
-                stop = true;
+                i += 1;
+            } 
+            else{
+                break;
             }
-        } catch (error) {
-            stop = true;
+        } 
+        catch (error) {
+            break;
         }
-        i += 1;
     }
     return paths;
 }
@@ -179,7 +180,6 @@ function updateCarousel(imagePaths) {
         const carouselItem = document.createElement('div');
         carouselItem.className = `carousel-item ${activeClass}`;
         const img = document.createElement('img');
-        console.log(path);
         img.src = path;
         img.className = 'd-block w-100';
         img.style.objectFit = "contain";
