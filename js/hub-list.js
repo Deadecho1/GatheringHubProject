@@ -1,4 +1,10 @@
-let temporaryQueryStringHub;
+var temporaryQueryStringHub;
+let defaultLocation = {
+    "coords" : {
+                    "latitude" : 32.0681777049327,
+                    "longitude" : 34.803421411031955
+                }
+};
 
 document.addEventListener('userDataReady', () => {
     try {
@@ -7,9 +13,7 @@ document.addEventListener('userDataReady', () => {
             addHubFromQuery();
         }
         populateHubList(hubsData);
-        if (defaultLocation) {
-            showPosition(defaultLocation);
-        }
+        showPosition(defaultLocation);
         //setLocation(); disabled until full release
     } catch (error) {
         handleError(error, "Failed to initialize list");

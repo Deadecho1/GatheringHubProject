@@ -28,8 +28,8 @@
                         <input required name="address" type="text" class="form-control" id="address" placeholder="eg. Anne Frank St 12 Ramat Gan">
                     </div>
                     <div class="mb-3">
-                        <label for="time-range" class="form-label">Working Hours</label>
-                        <div class="row align-items-center" id="time-range">
+                        <label class="form-label">Working Hours</label>
+                        <div class="row align-items-center">
                             <div class="col">
                                 <div class="d-flex align-items-center">
                                     <input type="number" id="op-hour" value="12" min="00" max="23" class="form-control me-2">
@@ -46,11 +46,11 @@
                     <div class="mb-3">
                         <div class="mb-3">
                             <div id="logo-list" class="row">
-                                <label for="logo-pick" class="form-label">Choose Logo (temp)</label>
+                                <h2>Choose Logo (temp)</h2>
                                 <template id="logo-option">
-                                    <div id="logo-pick" class="col-4">
-                                        <label class="image-checkbox">
-                                            <input type="radio" name="logo" value="1">
+                                    <div class="col-4">
+                                        <label class="image-checkbox" for="logo-1">
+                                            <input type="radio" name="logo" id="logo-1" value="1">
                                             <img src="images/placeholder.png" alt="" class="badge-image-ex">
                                         </label>
                                     </div>
@@ -60,11 +60,11 @@
                     </div>
                     <div class="mb-3">
                         <div id="badge-list" class="row">
-                            <label for="badge-pick" class="form-label">Choose Badge</label>
+                            <h2>Choose Badge</h2>
                             <template id="badge-option">
-                                <div id="badge-pick" class="col-4">
-                                    <label class="image-checkbox">
-                                        <input type="radio" name="badge" value="">
+                                <div class="col-4">
+                                    <label class="image-checkbox" for="badge-1">
+                                        <input type="radio" name="badge" id="badge-1" value="">
                                         <img src="images/placeholder.png" alt="" class="badge-image-ex">
                                     </label>
                                 </div>

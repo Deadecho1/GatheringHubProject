@@ -2,12 +2,6 @@ let userData;
 let hubsData;
 let abortController;
 //let currentLocation = localStorage.getItem('coords'); disabled until full release
-const defaultLocation = {
-    "coords" : {
-                    "latitude" : 32.0681777049327,
-                    "longitude" : 34.803421411031955
-                }
-    } ; //this is the location that the user is assumed to be right now, full release will ask for location.
 
 const userDataReadyEvent = new Event('userDataReady');
 
