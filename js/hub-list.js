@@ -1,15 +1,15 @@
 var temporaryQueryStringHub;
 let defaultLocation = {
-    "coords" : {
-                    "latitude" : 32.0681777049327,
-                    "longitude" : 34.803421411031955
-                }
+    "coords": {
+        "latitude": 32.0681777049327,
+        "longitude": 34.803421411031955
+    }
 };
 
 document.addEventListener('userDataReady', () => {
     try {
         setupDropdown();
-        if(window.location.search){
+        if (window.location.search) {
             addHubFromQuery();
         }
         populateHubList(hubsData);
@@ -23,7 +23,7 @@ document.addEventListener('userDataReady', () => {
 function setupDropdown() {
     let dropdownButton = document.getElementById('sort-select');
     if (!dropdownButton) return;
-    
+
     let dropdownMenu = dropdownButton.nextElementSibling;
     let dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
     dropdownItems.forEach(item => {
@@ -45,17 +45,16 @@ function populateHubList(hubs) {
     if (!template) return;
 
     let colorFlag = false;
-    for (const hubId in hubs) {
-        const hub = hubs[hubId];
+    for (let hubIndex = 0; hubIndex < hubs.length; hubIndex++) {
         let clone = template.content.cloneNode(true);
-        setupHubItem(clone, hub, hubId, colorFlag);
+        setupHubItem(clone, hubs[hubIndex], hubs[hubIndex].id, colorFlag);
         hubList.appendChild(clone);
         colorFlag = !colorFlag;
     }
 
     const trashButtons = hubList.querySelectorAll('.trash-button');
     trashButtons.forEach(button => {
-            button.addEventListener('click', handleDelete);
+        button.addEventListener('click', handleDelete);
     });
 }
 
@@ -97,8 +96,8 @@ function setupHubStatus(hubStatus, hub) {
     setAttendees(hubStatus, hub);
 }
 
-async function setAttendees(hubStatus, hub){
-    const response = await fetch("data/users.json");
+async function setAttendees(hubStatus, hub) {
+    const response = await fetch('http://localhost:3000/api/users/all-users');
     const usersData = await response.json();
     console.log("GET /users");
 
@@ -148,18 +147,18 @@ function checkOpenStatus(openingHour, closingHour) {
 
 
 /* THIS SUCKS AND IS TEMPORARY BECAUSE NO DATABASE*/
-function addHubFromQuery(){
+function addHubFromQuery() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let hubParams = {
-        name : "",
-        address : "",
-        openingHour : "",
-        closingHour : "",
+        name: "",
+        address: "",
+        openingHour: "",
+        closingHour: "",
         phone: "",
-        rating:"",
-        logo : "",
-        badge : ""
+        rating: "",
+        logo: "",
+        badge: ""
     };
 
     urlParams.forEach((value, key) => {
@@ -167,14 +166,14 @@ function addHubFromQuery(){
     });
 
     temporaryQueryStringHub = {
-        "name" : hubParams.name,
-        "badge" : hubParams.badge,
-        "openingHour" : hubParams.openingHour,
-        "closingHour" : hubParams.closingHour,
-        "location" : hubParams.address,
-        "phone" : hubParams.phone,
+        "name": hubParams.name,
+        "badge": hubParams.badge,
+        "openingHour": hubParams.openingHour,
+        "closingHour": hubParams.closingHour,
+        "location": hubParams.address,
+        "phone": hubParams.phone,
         "rating": hubParams.rating,
-        "attendees" : []
+        "attendees": []
     }
 
     const hubList = document.querySelector("#hub-list");
@@ -222,13 +221,13 @@ function showPosition(position) {
 }
 
 function setHubsDistance(lat, long) {
-    if(!document.getElementById("hub-list")){
+    if (!document.getElementById("hub-list")) {
         return;
     }
-    for (const id in hubsData) {
-        hub = hubsData[id];
+    for (let hubIndex = 0; hubIndex < hubsData.length; hubIndex++) {
+        hub = hubsData[hubIndex];
         const distance = distanceInKmBetweenEarthCoordinates(lat, long, hub.mapCoordinates[0], hub.mapCoordinates[1]);
-        const hubSection = document.getElementById(`item-${id}`);
+        const hubSection = document.getElementById(`item-${hub.id}`);
         hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
     }
 }

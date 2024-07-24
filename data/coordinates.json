@@ -1,24 +1,22 @@
 {
-    "users" : {
-        "2" : {
-            "latitude" : 80,
-            "longitude" : 50
+    "users": {
+        "2": {
+            "latitude": 80,
+            "longitude": 50
         },
-        "3" : {
-            "latitude" : 20, 
-            "longitude" : 50
+        "3": {
+            "latitude": 20,
+            "longitude": 50
         }
     },
-    "hubs" : {
-        "4" : {
-            "latitude" : 70, 
-            "longitude" : 80
+    "hubs": {
+        "4": {
+            "latitude": 70,
+            "longitude": 80
         },
-        "1" : {
-            "latitude" : 20, 
-            "longitude" : 20
+        "1": {
+            "latitude": 20,
+            "longitude": 20
         }
-
-
     }
 }

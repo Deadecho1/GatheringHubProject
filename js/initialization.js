@@ -8,9 +8,9 @@ const userDataReadyEvent = new Event('userDataReady');
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         abortController = new AbortController();
-        userData = await fetchData('data/user.json');
+        userData = await fetchData('http://localhost:3000/api/users/1');
         console.log("GET /users/{this-user-id}");
-        hubsData = await fetchData('data/hubs.json');
+        hubsData = await fetchData('http://localhost:3000/api/hubs/all-hubs');
         console.log("GET /hubs");
 
         document.dispatchEvent(userDataReadyEvent);

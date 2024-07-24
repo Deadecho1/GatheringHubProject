@@ -4,7 +4,7 @@ document.addEventListener('userDataReady', () => {
         console.log(hubsData);
         const queryString = window.location.search;
         const hubId = new URLSearchParams(queryString)?.get('id');
-        const hub = hubsData?.[hubId];
+        const hub = hubsData.find(hub => hub.id === Number(hubId));
 
         if (!hubId || !hub) {
             throw "No hub id";
@@ -43,11 +43,11 @@ async function getImagePaths(hubId) {
             if (response.ok) {
                 paths.push(`images/hubs/${hubId}/image_${i}.jpg`);
                 i += 1;
-            } 
-            else{
+            }
+            else {
                 break;
             }
-        } 
+        }
         catch (error) {
             break;
         }
@@ -62,7 +62,7 @@ function setupHubStatus(hub) {
     statusH2.classList.add(isOpen ? "text-open" : "text-close");
 }
 
-function setupHubWorkingHours(hub){
+function setupHubWorkingHours(hub) {
     let dropdownList = document.querySelector(".info-line > .dropdown > ul");
     let items = dropdownList.getElementsByTagName("li");
     items[0].textContent = "SUN: " + hub.openingHour + "-" + hub.closingHour;
@@ -74,17 +74,16 @@ function setupHubWorkingHours(hub){
     items[6].textContent = "SAT: " + hub.openingHour + "-" + hub.closingHour;
 }
 
-function setupDescription(hub){
+function setupDescription(hub) {
     let description = document.querySelector("#content");
     description.textContent = hub.about;
     description.dataset.fullText = hub.about;
 }
 
-async function setupStations(hub){
+async function setupStations(hub) {
     const list = document.querySelector(".stations-list");
     const card = document.querySelector("#station-card-template");
-    const response = await fetch("data/users.json");
-    const usersData = await response.json();
+
     if (!card) return;
 
     hub.stations.forEach(station => {
@@ -95,7 +94,7 @@ async function setupStations(hub){
         stationCapacity.textContent = station.currPlayers + "/" + station.maxPlayers + " players";
         let gameImage = cardClone.querySelector(".station > img");
 
-        if(station.game != ""){
+        if (station.game != "") {
             gameImage.src = `images/games/game_logos/${station.game}.jpg`;
             gameImage.alt = `${station.game} game logo`;
         }
@@ -108,13 +107,13 @@ async function setupStations(hub){
         station.players.forEach(player => {
             let attendeeIcon = document.createElement("div");
             attendeeIcon.classList.add("avatar-icon");
-            attendeeIcon.style.backgroundImage = `url("images/avatars/${usersData[player].avatar}_zoom.png")`;
+            attendeeIcon.style.backgroundImage = `url("images/avatars/${player.avatar}_zoom.png")`;
             if (userData && userData.friends.includes(player)) {
                 attendeeIcon.classList.add("friend");
             }
             attendeeSection.appendChild(attendeeIcon);
         });
-        
+
         list.appendChild(cardClone);
     });
 
@@ -137,18 +136,18 @@ function addLeadingZero(num) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-     const backButton = document.getElementById('x-icon');
+    const backButton = document.getElementById('x-icon');
 
-     backButton.addEventListener('click', () => {
-         history.back();
-     });
+    backButton.addEventListener('click', () => {
+        history.back();
+    });
 });
 
-function setupLocationButton(hubId){
+function setupLocationButton(hubId) {
     const button = document.querySelector(".location-icon");
     button.addEventListener('click', () => {
         const latitude = hubsData[hubId].mapCoordinates[0];
-        const longitude = hubsData[hubId].mapCoordinates[1]; 
+        const longitude = hubsData[hubId].mapCoordinates[1];
         const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
         window.open(url, '_blank');
     });
@@ -161,9 +160,9 @@ function updateLogo(logoPath) {
     }
 }
 
- function updateBadge(badge) {
-     const badgeElement = document.querySelector('.badge-image');
-     if (badgeElement) {
+function updateBadge(badge) {
+    const badgeElement = document.querySelector('.badge-image');
+    if (badgeElement) {
         badgeElement.src = `images/badges/${badge}.png`;
         if (userData && !userData.badges.includes(badge)) {
             badgeElement.classList.add("not-collected");
@@ -174,7 +173,7 @@ function updateLogo(logoPath) {
 
 function updateCarousel(imagePaths) {
     const carouselInner = document.querySelector('.carousel-inner');
-    carouselInner.innerHTML = ''; 
+    carouselInner.innerHTML = '';
     imagePaths.forEach((path, index) => {
         const activeClass = index === 0 ? 'active' : '';
         const carouselItem = document.createElement('div');
@@ -189,8 +188,7 @@ function updateCarousel(imagePaths) {
     });
 }
 
-function setupMoreButton()
-{
+function setupMoreButton() {
     const moreButton = document.getElementById('more-link');
     const content = document.getElementById('content');
     const maxLength = 100;
@@ -206,7 +204,7 @@ function setupMoreButton()
         if (content.classList.contains('collapsed')) {
             content.classList.remove('collapsed');
             content.classList.add('expanded');
-            content.textContent = content.dataset.fullText; 
+            content.textContent = content.dataset.fullText;
             moreButton.textContent = "Less";
         } else {
             content.classList.remove('expanded');
@@ -219,12 +217,12 @@ function setupMoreButton()
 
 function setUpRating(hub) {
     const starRating = document.getElementById('star-rating');
-    starRating.innerHTML = ''; 
+    starRating.innerHTML = '';
 
     for (let i = 1; i <= 5; i++) {
         const star = document.createElement('span');
         star.classList.add('star');
-        star.innerHTML = i <= hub.rating ? '&#9733;' : '&#9734;'; 
+        star.innerHTML = i <= hub.rating ? '&#9733;' : '&#9734;';
         if (i <= hub.rating) {
             star.classList.add('filled');
         }

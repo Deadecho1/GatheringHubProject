@@ -1,12 +1,13 @@
 document.addEventListener('userDataReady', async function () {
     try {
-        const coordinatesData = await fetchData("data/coordinates.json");
-        const usersData = await fetchData('data/users.json');
+        const coordinatesUserData = await fetchData('http://localhost:3000/api/coordinates/all-users');
+        const coordinatesHubData = await fetchData('http://localhost:3000/api/coordinates/all-hubs');
+        const usersData = await fetchData('http://localhost:3000/api/users/all-users');
         console.log("GET /users");
         console.log("GET /coordinates");
-        if (coordinatesData && usersData) {
-            loadAvatarData(coordinatesData.users, usersData);
-            loadHubData(coordinatesData.hubs, usersData);
+        if (coordinatesUserData && coordinatesHubData && usersData) {
+            loadAvatarData(coordinatesUserData, usersData);
+            loadHubData(coordinatesHubData, usersData);
         }
     } catch (error) {
         handleError('Error during data processing:', error);
@@ -26,27 +27,27 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleButton.classList.toggle("rotated");
         toggleButton.classList.toggle("expanded");
         chatForm.classList.toggle("visible");
-        
+
         chatForm.addEventListener("submit", (event) => {
-            event.preventDefault(); 
-        
+            event.preventDefault();
+
             let messageText = chatInput.value.trim();
-    
+
             if (messageText !== "") {
                 let newMessage = document.createElement("div");
                 newMessage.classList.add("message");
                 newMessage.textContent = messageText;
-    
+
                 chatInputContainer.insertBefore(newMessage, chatInputContainer.firstChild);
-    
-                chatInput.value = ""; 
+
+                chatInput.value = "";
                 chatContainer.scrollTop = 0;
             }
         });
     });
 });
 
-function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screenTopPercent){
+function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screenTopPercent) {
     try {
         const template = document.querySelector("#avatar-template");
 
@@ -64,59 +65,62 @@ function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screen
         txt.textContent = playerName;
         txt.style.color = nameColor;
         txt.style.fontWeight = 600;
-            
+
         map.appendChild(clone);
     } catch (error) {
         handleError('Error during avatar loading:', error);
     }
-    
+
 }
 
-async function loadAvatarData(usersCoordinates, usersData){
-    if(usersData){
-        for (const userid in usersCoordinates) {
-            let currentUser = usersData[userid];
-            let color = getNameColor(userid);
-            loadAvatar(currentUser.name, currentUser.avatar, color, usersCoordinates[userid].latitude, usersCoordinates[userid].longitude);
-        }
-        if(userData){
-            color = getNameColor(userData.id);
-            loadAvatar(userData.name, userData.avatar, color, 50, 50);
+async function loadAvatarData(usersCoordinates, usersData) {
+    if (usersData) {
+        for (let userCordsIndex = 0; userCordsIndex < usersCoordinates.length; userCordsIndex++) {
+            var userCords = usersCoordinates[userCordsIndex];
+            const currentUser = usersData.find(user => user.id === userCords.UserId);
+            let color = getNameColor(userCords.UserId);
+            loadAvatar(currentUser.name, currentUser.avatar, color, userCords.latitude, userCords.longitude);
+            if (userData) {
+                color = getNameColor(userData.id);
+                loadAvatar(userData.name, userData.avatar, color, 50, 50);
+            }
         }
     }
 }
 
-function getNameColor(id){
-    if(!userData){
+function getNameColor(id) {
+    if (!userData) {
         return;
     }
     const red = "#FF0000"
     const green = "#2BFF00"
     const black = "#000000"
 
-    if(userData.id == id){
+    if (userData.id == id) {
         return red;
     }
-    else if(userData.friends.includes(Number(id))){
+    else if (userData.friends.includes(Number(id))) {
         return green;
     }
-    else{
+    else {
         return black;
     }
 }
 
-function loadHubData(hubsCoordinates, usersData){
-    if(!hubsData){
+function loadHubData(hubsCoordinates, usersData) {
+    if (!hubsData) {
         return;
     }
     const map = document.querySelector(".bg-map");
-    for (const hubId in hubsCoordinates) {
-        const hub = hubsData[hubId];
-        loadHubAvatar(hub, hubId, usersData, false, hubsCoordinates[hubId].latitude, hubsCoordinates[hubId]. longitude, map);
+    for (let hubIndex = 0; hubIndex < hubsCoordinates.length; hubIndex++) {
+        const hub = hubsData.find(hub => hub.id === Number(hubsCoordinates[hubIndex].HubId));
+        loadHubAvatar(hub, hub.id, usersData, false, hubsCoordinates[hubIndex].latitude, hubsCoordinates[hubIndex].longitude, map);
+
     }
+
 }
 
-function loadHubAvatar(hub, hubId, usersData, isBadgeCollected, screenLeftPercent, screenTopPercent, map){
+function loadHubAvatar(hub, hubId, usersData, isBadgeCollected, screenLeftPercent, screenTopPercent, map) {
     try {
         const template = document.querySelector("#hub-avatar-template");
 
@@ -127,39 +131,42 @@ function loadHubAvatar(hub, hubId, usersData, isBadgeCollected, screenLeftPercen
         container.style.left = `${screenLeftPercent}%`;
 
         const attendeesSection = clone.querySelector("#attendee-section");
-        hub.attendees.slice(0, 3).forEach(attendee => {
-            let attendeeIcon = document.createElement("div");
-            attendeeIcon.classList.add("avatar-icon");
-            attendeeIcon.style.backgroundImage = `url("images/avatars/${usersData[attendee.id].avatar}_zoom.png")`;
-            if (userData && userData.friends.includes(attendee.id)) {
-                attendeeIcon.classList.add("friend");
+        if (hub.attendees) {
+            hub.attendees.slice(0, 3).forEach(attendee => {
+                let attendeeIcon = document.createElement("div");
+                attendeeIcon.classList.add("avatar-icon");
+                attendeeIcon.style.backgroundImage = `url("images/avatars/${usersData[attendee.id].avatar}_zoom.png")`;
+                if (userData && userData.friends.includes(attendee.id)) {
+                    attendeeIcon.classList.add("friend");
+                }
+                attendeesSection.appendChild(attendeeIcon);
+            });
+            let extra = hub.attendees.length - 3;
+            if (extra > 0) {
+                let extraAttendeeText = document.createElement("h2");
+                extraAttendeeText.textContent = `+${extra}`;
+                extraAttendeeText.style.fontWeight = 600;
+                attendeesSection.appendChild(extraAttendeeText);
             }
-            attendeesSection.appendChild(attendeeIcon);
-        });
-        let extra = hub.attendees.length - 3;
-        if (extra > 0) {
-            let extraAttendeeText = document.createElement("h2");
-            extraAttendeeText.textContent = `+${extra}`;
-            extraAttendeeText.style.fontWeight = 600;
-            attendeesSection.appendChild(extraAttendeeText);
+
+            const avatarImg = clone.querySelector("img");
+            avatarImg.src = `images/hub_avatars/${hub.avatar}.png`;
+            avatarImg.alt = `${hub.avatar} hub avatar`;
+
+            const txt = clone.querySelector("p");
+            txt.textContent = hub.name;
+            txt.style.fontWeight = 600;
+
+            const badgeImg = clone.querySelector("#hub-badge");
+            badgeImg.src = `images/badges/${hub.badge}.png`;
+            badgeImg.alt = `${hub.badge} badge`;
+
+            const link = clone.querySelector("a");
+            link.href = `hub-page.html?id=${hubId}`
+
+            map.appendChild(clone);
         }
 
-        const avatarImg = clone.querySelector("img");
-        avatarImg.src = `images/hub_avatars/${hub.avatar}.png`;
-        avatarImg.alt = `${hub.avatar} hub avatar`;
-
-        const txt = clone.querySelector("p");
-        txt.textContent = hub.name;
-        txt.style.fontWeight = 600;
-
-        const badgeImg = clone.querySelector("#hub-badge");
-        badgeImg.src = `images/badges/${hub.badge}.png`;
-        badgeImg.alt = `${hub.badge} badge`;
-
-        const link = clone.querySelector("a");
-        link.href = `hub-page.html?id=${hubId}`
-
-        map.appendChild(clone);
     } catch (error) {
         handleError('Error during hub-avatar loading:', error);
     }
