@@ -1,7 +1,7 @@
 
 document.addEventListener('userDataReady', () => {
     try {
-        console.log(hubsData);
+        
         const queryString = window.location.search;
         const hubId = new URLSearchParams(queryString)?.get('id');
         const hub = hubsData.find(hub => hub.id === Number(hubId));
@@ -89,7 +89,7 @@ async function setupStations(hub) {
     hub.stations.forEach(station => {
         let cardClone = card.content.cloneNode(true);
         let stationName = cardClone.querySelector("#station-name");
-        stationName.textContent = station.stationID;
+        stationName.textContent = station.stationName;
         let stationCapacity = cardClone.querySelector(".player-number");
         stationCapacity.textContent = station.currPlayers + "/" + station.maxPlayers + " players";
         let gameImage = cardClone.querySelector(".station > img");
