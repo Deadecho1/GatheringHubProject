@@ -1002,6 +1002,19 @@ footer > a:hover{
     background-size: cover;
     background-color: #002D42;
 }
-.form-label, .text-center, p {
+.form-label, .text-center {
     color: #333; 
 }
+.station-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #333; 
+    font-size: 16px; 
+    margin-top: 0;
+    font-size: 16px; 
+    margin: 0;
+}
+
+

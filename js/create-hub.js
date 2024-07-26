@@ -1,6 +1,12 @@
-// please enable persistent logging to see the post request log
+const images = [
+    'images/hubs/1/logo.png',
+    'images/hubs/2/logo.png',
+    'images/hubs/3/logo.png',
+    'images/hubs/4/logo.png',
+    'images/hubs/5/logo.png',
+];
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("hub-form").addEventListener('submit', function(event) {
+    document.getElementById("hub-form").addEventListener('submit', async function (event) {
         event.preventDefault();
         // commented until full release (api key)
         //const address = document.getElementById('address').value;
@@ -13,22 +19,44 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.forEach((value, key) => {
             formObject[key] = value;
         });
-        console.log("POST /hubs (body):", formObject);
+        let userString = localStorage.getItem('userInfo');
+        const userObject = JSON.parse(userString);
+        formObject.ownerId = userObject.id;
 
-        const form = document.getElementById('hub-form');
-        form.submit()
+        const response = await fetch('http://localhost:3000/api/hubs/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+        });
+        const data = await response.json();
+        if (response.ok) {
+            const form = document.getElementById('hub-form');
+            form.submit()
+            const url = `create-station.html?hubId=${data.id}`;
+            window.location.href = url
+        } else {
+            alert(data.error);
+        }
+        ;
     });
 });
 
-document.addEventListener('userDataReady', () => {
-    populateLogoOptions(hubsData);
-    fetch("data/badges.json")
-        .then(response => response.json())
-        .then(data => populateBadgeOptions(data));
-    console.log("GET /badges");
+
+document.addEventListener('userDataReady', async () => {
+    populateLogoOptions(images);
+    try {
+        const response = await fetch('http://localhost:3000/api/badges/all-badges');
+        const data = await response.json();
+        populateBadgeOptions(data);
+        console.log("GET /badges");
+    } catch (error) {
+        console.error("Error fetching badges:", error);
+    }
 });
 
-function populateHiddenForms(){
+function populateHiddenForms() {
     const opHour = document.getElementById('op-hour').value.padStart(2, '0');
     const opMin = document.getElementById('op-min').value.padStart(2, '0');
     const opTime = `${opHour}:${opMin}`;
@@ -41,40 +69,40 @@ function populateHiddenForms(){
 }
 
 /* temporary, will be replaced with image upload when we have a server */
-function populateLogoOptions(hubs) {
+function populateLogoOptions(images) {
     const logoList = document.querySelector("#logo-list");
     const template = document.querySelector("#logo-option");
     if (!template) return;
-
-    for (const hubId in hubs) {
+    for (let imagesIndex = 0; imagesIndex < images.length; imagesIndex++) {
         let clone = template.content.cloneNode(true);
-        clone.querySelector("input").value = hubId;
-        clone.querySelector("img").src = `images/hubs/${hubId}/logo.png`;
-        clone.querySelector("img").alt = `hub ${hubId}'s logo`;
+        clone.querySelector("input").value = images[imagesIndex];
+        clone.querySelector("img").src = images[imagesIndex]
+        clone.querySelector("img").alt = `hub logo`;
         logoList.appendChild(clone);
     }
 
+
     let firstChild = logoList.querySelector("input");
-    if(firstChild){
+    if (firstChild) {
         firstChild.checked = true;
     }
 }
 
-function populateBadgeOptions(badgeOptions){
+function populateBadgeOptions(badgeOptions) {
     const badgeList = document.querySelector("#badge-list");
     const template = document.querySelector("#badge-option");
     if (!template) return;
 
     for (const [key, value] of Object.entries(badgeOptions)) {
         let clone = template.content.cloneNode(true);
-        clone.querySelector("input").value = value;
-        clone.querySelector("img").src = `images/badges/${value}.png`;
-        clone.querySelector("img").alt = `badge ${value}`;
+        clone.querySelector("input").value = value.name;
+        clone.querySelector("img").src = `images/badges/${value.name}.png`;
+        clone.querySelector("img").alt = `badge ${value.name}`;
         badgeList.appendChild(clone)
     }
 
     let firstChild = badgeList.querySelector("input");
-    if(firstChild){
+    if (firstChild) {
         firstChild.checked = true;
     }
 }

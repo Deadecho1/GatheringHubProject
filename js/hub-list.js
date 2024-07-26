@@ -1,4 +1,6 @@
 var temporaryQueryStringHub;
+let userString = localStorage.getItem('userInfo');
+const userInfo = JSON.parse(userString);
 let defaultLocation = {
     "coords": {
         "latitude": 32.0681777049327,
@@ -48,6 +50,14 @@ function populateHubList(hubs) {
     for (let hubIndex = 0; hubIndex < hubs.length; hubIndex++) {
         let clone = template.content.cloneNode(true);
         setupHubItem(clone, hubs[hubIndex], hubs[hubIndex].id, colorFlag);
+
+        if (userInfo.role === 'admin' || userInfo.id !== hubs[hubIndex].ownerId) {
+            const trashButton = clone.querySelector('.trash-button');
+            if (trashButton) {
+                trashButton.style.display = 'none';
+            }
+        }
+
         hubList.appendChild(clone);
         colorFlag = !colorFlag;
     }
@@ -84,7 +94,12 @@ function setupHubItem(hubSection, hub, hubId, colorFlag) {
     setupHubStatus(hubSection.querySelector("#hub-status"), hub);
     setupHubLocation(hubSection.querySelector("#location"), hub);
     setupHubBadge(hubSection.querySelector(".badge-image"), hub);
-    hubSection.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubId}/logo.png")`;
+    if (hubId < 6) {
+        hubSection.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubId}/logo.png")`;
+
+    } else {
+        hubSection.querySelector(".hub-logo").style.backgroundImage = `url("${hub.logo}")`;
+    }
 }
 
 function setupHubStatus(hubStatus, hub) {
@@ -99,7 +114,7 @@ function setupHubStatus(hubStatus, hub) {
 async function setAttendees(hubStatus, hub) {
     const response = await fetch('http://localhost:3000/api/users/all-users');
     const usersData = await response.json();
-    console.log("GET /users");
+
 
     hub.attendees.slice(0, 3).forEach(attendee => {
         let attendeeIcon = document.createElement("div");

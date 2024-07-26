@@ -19,6 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
         }
     } catch (error) {
+        alert("Error");
         console.error('Error:', error);
     }
 });
