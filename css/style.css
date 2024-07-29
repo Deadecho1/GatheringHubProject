@@ -203,7 +203,7 @@ header{
     line-height: normal; 
 }
 
-.settings-button{
+.actions-button{
     width: 28px;
     height: 27px;
     background:  url("../images/icons/cog.svg");
@@ -1017,4 +1017,278 @@ footer > a:hover{
     margin: 0;
 }
 
+.modal {
+    display: none;
+    position: fixed; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    color:rgb(0,0,0)!important;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
 
+.modal-content {
+    background-color: #fefefe;
+    color:rgb(0,0,0) !important;
+    margin: 15% auto; 
+    width: 80%;
+    text-align: center!important;
+}
+.modal .modal-content {
+    background-color: #FFF; 
+}
+.modal-title{
+    color: #F51F1F!important;
+}
+.modal-header{
+    flex-direction: column;
+}
+
+.modal .modal-header .modal-title,
+.modal .modal-body p,
+.modal .modal-footer  {
+    color: #000; 
+    font-size: 16px;
+}
+#confirm-button {
+    background-color: #28a745; 
+    border-color: #28a745;
+}
+
+#cancel-button {
+    background-color: #dc3545; 
+    border-color: #dc3545; 
+}
+.modal-footer  {
+    justify-content: space-evenly;
+}
+.modal-header, .modal-footer {
+    border: none; 
+}
+
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #68beee;
+}
+
+.logo-container {
+    width: 50px;
+}
+
+.logo {
+    width: 100%;
+}
+
+.actions-container {
+    width: 50px;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.actions-icon {
+    width: 25px;
+    color: #294E75;
+}
+
+.profile-info {
+    padding-right: 20px;
+width: 50%;
+}
+
+
+.level-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.level-label {
+    font-size: 14px;
+    color: #ffffff;
+    margin-right: 5px;
+}
+
+.level-number {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #21334F;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+
+.avatar-container {
+    margin-left: auto;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.add-friend {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.add-friend-button {
+    background-color: #1F7A1F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+
+.content {
+    padding: 10px;
+}
+
+
+.badge {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.badge img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.badge-label {
+    font-size: 14px;
+}
+.profile-card{
+    display: flex;
+    align-items: center;
+}
+
+.profile-body {
+    padding: 20px;
+    background-color: #68beee;
+}
+
+.username {
+    font-size: 24px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.about-me {
+    font-size: 14px;
+    color: #ffffff;
+    margin: 5px 0;
+}
+
+.about-me-text {
+    background-color: #21334F;
+    border-radius: 10px;
+    padding: 10px;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.avatar-container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; 
+}
+
+#profile-avatar-bg {
+    position: absolute; 
+    z-index: 1; 
+    height: auto; 
+}
+
+#profile-avatar-img {
+    position: relative; 
+    z-index: 2; 
+    width: 100%;
+    height: auto; 
+}
+
+.profile-row {
+    display: flex;
+}
+
+.username-div {
+    padding-right: 15px;
+}
+
+
+
+.profile-body2 {
+    background-color: #21334F;
+    margin: auto;
+    color: #ffffff;
+}
+
+.add-friend-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-friend-text {
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.add-friend-icon,
+.friend-icon {
+    fill: #ffffff;
+    margin-right: 5px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tab {
+    background-color: #68beee;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+.tab.active {
+    background-color: #1a9edb;
+}
+
+.tab-content {
+    background-color: #294E75;
+    padding: 10px;
+    border-radius: 0 10px 10px 10px;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.badge img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}

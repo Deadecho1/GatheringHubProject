@@ -1,10 +1,11 @@
+let userString = localStorage.getItem('userInfo');
+const userInfo = JSON.parse(userString);
 document.addEventListener('userDataReady', async function () {
     try {
         const coordinatesUserData = await fetchData('http://localhost:3000/api/coordinates/all-users');
         const coordinatesHubData = await fetchData('http://localhost:3000/api/coordinates/all-hubs');
         const usersData = await fetchData('http://localhost:3000/api/users/all-users');
-        console.log("GET /users");
-        console.log("GET /coordinates");
+
         if (coordinatesUserData && coordinatesHubData && usersData) {
             loadAvatarData(coordinatesUserData, usersData);
             loadHubData(coordinatesHubData, usersData);
@@ -14,40 +15,88 @@ document.addEventListener('userDataReady', async function () {
     }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("chat-toggle-button").addEventListener("click", () => {
-        const chatContainer = document.getElementById("chat-box");
-        const toggleButton = document.getElementById("chat-toggle-button");
-        const chatInputContainer = document.getElementById("message-section");
-        const chatForm = document.getElementById("chat-send");
-        const chatInput = document.getElementById("chat-input");
-
-        chatInputContainer.classList.toggle("expanded");
-        chatContainer.classList.toggle("expanded");
-        toggleButton.classList.toggle("rotated");
-        toggleButton.classList.toggle("expanded");
-        chatForm.classList.toggle("visible");
-
-        chatForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            let messageText = chatInput.value.trim();
-
-            if (messageText !== "") {
+function loadMessages(chatInputContainer, chatContainer) {
+    fetch("http://localhost:3000/api/chats/all-chats")
+        .then(response => response.json())
+        .then(data => {
+            chatInputContainer.innerHTML = '';
+            data.forEach(message => {
                 let newMessage = document.createElement("div");
                 newMessage.classList.add("message");
-                newMessage.textContent = messageText;
+                const color = getNameColor(userInfo.id);
 
-                chatInputContainer.insertBefore(newMessage, chatInputContainer.firstChild);
+                if (message.username === userInfo.username) {
+                    newMessage.innerHTML = `<span style="color:${color}">${'Yo'}:</span> ${message.message}`;
 
-                chatInput.value = "";
-                chatContainer.scrollTop = 0;
-            }
+                } else {
+                    newMessage.innerHTML = `<span style="color:${color}">${username}:</span> ${message.message}`;
+
+                }
+                chatInputContainer.appendChild(newMessage);
+            });
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        })
+        .catch(error => {
+            console.error("Error fetching messages:", error);
         });
+};
+document.addEventListener("DOMContentLoaded", () => {
+    const chatToggleButton = document.getElementById("chat-toggle-button");
+    const chatContainer = document.getElementById("chat-box");
+    const chatInputContainer = document.getElementById("message-section");
+    const chatForm = document.getElementById("chat-send");
+    const chatInput = document.getElementById("chat-input");
+
+
+    loadMessages(chatInputContainer, chatContainer);
+
+    chatToggleButton.addEventListener("click", () => {
+        chatInputContainer.classList.toggle("expanded");
+        chatContainer.classList.toggle("expanded");
+        chatToggleButton.classList.toggle("rotated");
+        chatToggleButton.classList.toggle("expanded");
+        chatForm.classList.toggle("visible");
+    });
+
+    chatForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        let messageText = chatInput.value.trim();
+
+
+        if (messageText !== "") {
+            fetch("http://localhost:3000/api/chats/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: messageText, username: userInfo.username })
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    let newMessage = document.createElement("div");
+                    newMessage.classList.add("message");
+
+                    const username = 'Yo';
+                    const color = getNameColor(userInfo.id);
+
+                    newMessage.innerHTML = `<span style="color:${color}">${username}:</span> ${messageText}`;
+                    chatInputContainer.insertBefore(newMessage, chatInputContainer.firstChild);
+
+                    chatInput.value = "";
+                    chatContainer.scrollTop = 0;
+
+
+                })
+                .catch(error => {
+                    console.error("Error sending message:", error);
+                });
+        }
     });
 });
 
-function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screenTopPercent) {
+function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screenTopPercent, playerId) {
     try {
         const template = document.querySelector("#avatar-template");
 
@@ -66,7 +115,10 @@ function loadAvatar(playerName, avatarName, nameColor, screenLeftPercent, screen
         txt.style.color = nameColor;
         txt.style.fontWeight = 600;
 
-        map.appendChild(clone);
+        const link = document.createElement('a');
+        link.href = `profile.html?id=${playerId}`;
+        link.appendChild(container);
+        map.appendChild(link);
     } catch (error) {
         handleError('Error during avatar loading:', error);
     }
@@ -79,10 +131,10 @@ async function loadAvatarData(usersCoordinates, usersData) {
             var userCords = usersCoordinates[userCordsIndex];
             const currentUser = usersData.find(user => user.id === userCords.UserId);
             let color = getNameColor(userCords.UserId);
-            loadAvatar(currentUser.name, currentUser.avatar, color, userCords.latitude, userCords.longitude);
+            loadAvatar(currentUser.name, currentUser.avatar, color, userCords.latitude, userCords.longitude, currentUser.id);
             if (userData) {
                 color = getNameColor(userData.id);
-                loadAvatar(userData.name, userData.avatar, color, 50, 50);
+                loadAvatar(userData.name, userData.avatar, color, 50, 50, currentUser.id);
             }
         }
     }
@@ -118,6 +170,37 @@ function loadHubData(hubsCoordinates, usersData) {
 
     }
 
+}
+
+async function loadHubs(verified) {
+    const coordinatesUserData = await fetchData('http://localhost:3000/api/coordinates/all-users');
+    const coordinatesHubData = await fetchData('http://localhost:3000/api/coordinates/all-hubs');
+    const usersData = await fetchData('http://localhost:3000/api/users/all-users');
+    const map = document.querySelector(".bg-map");
+    if (verified) {
+        if (coordinatesUserData && coordinatesHubData && usersData) {
+            clearMapElements(map)
+            loadAvatarData(coordinatesUserData, usersData);
+            loadHubData(coordinatesHubData, usersData);
+        }
+    }
+    else {
+        let niceStreetY = 60;
+        let niceStreetX = 80;
+
+        for (let hubIndex = 0; hubIndex < hubsData.length; hubIndex++) {
+            const hub = coordinatesHubData.find(hub => hub.HubId === Number(hubsData[hubIndex].id));
+            if (!hub) {
+                loadHubAvatar(hubsData[hubIndex], hubsData[hubIndex].id, usersData, false, niceStreetY, niceStreetX, map);
+                niceStreetY -= 10;
+            }
+        }
+
+    }
+}
+function clearMapElements(map) {
+    const elements = map.querySelectorAll(".hub-avatar-element");
+    elements.forEach(element => element.remove());
 }
 
 function loadHubAvatar(hub, hubId, usersData, isBadgeCollected, screenLeftPercent, screenTopPercent, map) {
@@ -164,6 +247,7 @@ function loadHubAvatar(hub, hubId, usersData, isBadgeCollected, screenLeftPercen
             const link = clone.querySelector("a");
             link.href = `hub-page.html?id=${hubId}`
 
+            container.classList.add("hub-avatar-element");
             map.appendChild(clone);
         }
 
@@ -171,3 +255,33 @@ function loadHubAvatar(hub, hubId, usersData, isBadgeCollected, screenLeftPercen
         handleError('Error during hub-avatar loading:', error);
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const verifiedSwitch = document.getElementById("verified-switch");
+    const modalElement = document.getElementById('confirmation-modal');
+    const confirmButton = document.getElementById("confirm-button");
+    const cancelButton = document.getElementById("cancel-button");
+    let isConfirmed = false;
+
+    verifiedSwitch.addEventListener("change", () => {
+        if (isConfirmed) {
+            loadHubs(isConfirmed);
+            isConfirmed = false;
+            return;
+        }
+
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+
+        confirmButton.onclick = () => {
+            modal.hide();
+            isConfirmed = true;
+            loadHubs(verifiedSwitch.checked);
+        };
+
+        cancelButton.onclick = () => {
+            modal.hide();
+            verifiedSwitch.checked = true;
+        };
+    });
+});

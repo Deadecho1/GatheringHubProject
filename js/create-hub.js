@@ -8,12 +8,10 @@ const images = [
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("hub-form").addEventListener('submit', async function (event) {
         event.preventDefault();
-        // commented until full release (api key)
-        //const address = document.getElementById('address').value;
-        //geocodeAddress(address);
+
         populateHiddenForms();
 
-        // Temporary logging
+
         const formData = new FormData(this);
         const formObject = {};
         formData.forEach((value, key) => {
