@@ -1,4 +1,6 @@
 var temporaryQueryStringHub;
+let hubListTemplate;
+let templateList;
 let userString = localStorage.getItem('userInfo');
 const userInfo = JSON.parse(userString);
 let defaultLocation = {
@@ -7,6 +9,7 @@ let defaultLocation = {
         "longitude": 34.803421411031955
     }
 };
+let selectedSortOption = 'Distance';
 
 document.addEventListener('userDataReady', () => {
     try {
@@ -30,11 +33,40 @@ function setupDropdown() {
     let dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
     dropdownItems.forEach(item => {
         item.addEventListener('click', () => {
+            selectedSortOption = item.textContent.trim();
             updateDropdown(dropdownButton, dropdownItems, item);
+            sortAndPopulateHubList();
         });
     });
 }
 
+function sortHubs(hubs, option) {
+    let sortedHubs;
+    switch (option) {
+        case 'Distance':
+            const { latitude, longitude } = defaultLocation.coords;
+            sortedHubs = hubs.sort((a, b) => distanceInKmBetweenEarthCoordinates(latitude, longitude, a.mapCoordinates[0], a.mapCoordinates[1]) - distanceInKmBetweenEarthCoordinates(latitude, longitude, b.mapCoordinates[0], b.mapCoordinates[1]));
+            return sortedHubs;
+        case 'Friends':
+            sortedHubs = hubs.sort((a, b) => a.attendees.filter(player => userData.friends.includes(player.id)).length - b.attendees.filter(player => userData.friends.includes(player.id)).length);
+            return sortedHubs;
+        case 'Popularity':
+            return hubs.sort((a, b) => b.attendees - a.attendees);
+    }
+}
+
+function sortAndPopulateHubList() {
+    if (selectedSortOption === 'Distance') {
+        setHubsDistance(defaultLocation.coords.latitude, defaultLocation.coords.longitude);
+    }
+
+    const sortedHubs = sortHubs(hubsData, selectedSortOption);
+    populateHubList(sortedHubs);
+}
+document.addEventListener('DOMContentLoaded', () => {
+    hubListTemplate = document.querySelector("#hub-list");
+    templateList = document.querySelector("#list-item-template");
+});
 function updateDropdown(button, items, selectedItem) {
     button.innerHTML = `<i class="menu-burger-icon"></i>${selectedItem.textContent.trim()}<i class="down-arrow-icon"></i>`;
     items.forEach(item => item.classList.remove('active'));
@@ -42,16 +74,24 @@ function updateDropdown(button, items, selectedItem) {
 }
 
 function populateHubList(hubs) {
-    const hubList = document.querySelector("#hub-list");
-    const template = document.querySelector("#list-item-template");
-    if (!template) return;
+    const hubList = hubListTemplate;
+    const template = templateList;
+
+    hubList.innerHTML = '';
 
     let colorFlag = false;
     for (let hubIndex = 0; hubIndex < hubs.length; hubIndex++) {
-        let clone = template.content.cloneNode(true);
+        let clone;
+        try {
+            clone = template.content.cloneNode(true);
+        } catch (error) {
+            console.error('Error cloning template:', error);
+            continue;
+        }
+
         setupHubItem(clone, hubs[hubIndex], hubs[hubIndex].id, colorFlag);
 
-        if (userInfo.role === 'admin' || userInfo.id !== hubs[hubIndex].ownerId) {
+        if (userInfo.role !== 'admin' && userInfo.id !== hubs[hubIndex].ownerId) {
             const trashButton = clone.querySelector('.trash-button');
             if (trashButton) {
                 trashButton.style.display = 'none';
@@ -67,6 +107,8 @@ function populateHubList(hubs) {
         button.addEventListener('click', handleDelete);
     });
 }
+
+
 
 function handleDelete(event) {
     const listItem = event.target.closest('.list-item');
@@ -96,7 +138,6 @@ function setupHubItem(hubSection, hub, hubId, colorFlag) {
     setupHubBadge(hubSection.querySelector(".badge-image"), hub);
     if (hubId < 6) {
         hubSection.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubId}/logo.png")`;
-
     } else {
         hubSection.querySelector(".hub-logo").style.backgroundImage = `url("${hub.logo}")`;
     }
@@ -114,7 +155,6 @@ function setupHubStatus(hubStatus, hub) {
 async function setAttendees(hubStatus, hub) {
     const response = await fetch('http://localhost:3000/api/users/all-users');
     const usersData = await response.json();
-
 
     hub.attendees.slice(0, 3).forEach(attendee => {
         let attendeeIcon = document.createElement("div");
@@ -159,48 +199,6 @@ function checkOpenStatus(openingHour, closingHour) {
 
     return currentTime < closingHour && currentTime > openingHour;
 }
-
-
-/* THIS SUCKS AND IS TEMPORARY BECAUSE NO DATABASE*/
-function addHubFromQuery() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    let hubParams = {
-        name: "",
-        address: "",
-        openingHour: "",
-        closingHour: "",
-        phone: "",
-        rating: "",
-        logo: "",
-        badge: ""
-    };
-
-    urlParams.forEach((value, key) => {
-        hubParams[key] = value;
-    });
-
-    temporaryQueryStringHub = {
-        "name": hubParams.name,
-        "badge": hubParams.badge,
-        "openingHour": hubParams.openingHour,
-        "closingHour": hubParams.closingHour,
-        "location": hubParams.address,
-        "phone": hubParams.phone,
-        "rating": hubParams.rating,
-        "attendees": []
-    }
-
-    const hubList = document.querySelector("#hub-list");
-    const template = document.querySelector("#list-item-template");
-    if (!template) return;
-    let clone = template.content.cloneNode(true);
-
-    setupHubItem(clone, temporaryQueryStringHub, 0, true);
-    clone.querySelector(".hub-logo").style.backgroundImage = `url("images/hubs/${hubParams.logo}/logo.png")`;
-    hubList.appendChild(clone);
-}
-
 function addLeadingZero(num) {
     return num < 10 ? `0${num}` : String(num);
 }
@@ -246,31 +244,3 @@ function setHubsDistance(lat, long) {
         hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
     }
 }
-
-// currently not working because of key issues, will work on full release 
-/*
-function setLocation() {
-    if (navigator.geolocation) {
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        };
-
-        navigator.geolocation.getCurrentPosition(showPosition, showError, options);
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
-}
-
-function showError(error) {
-    const errorMessages = {
-        1: "User denied the request for Geolocation.",
-        2: "Location information is unavailable.",
-        3: "The request to get user location timed out.",
-        0: "An unknown error occurred."
-    };
-    console.log(errorMessages[error.code] || errorMessages[0]);
-    setHubsDistance(defaultLocation[0], defaultLocation[1]);
-}
-*/

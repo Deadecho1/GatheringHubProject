@@ -134,7 +134,7 @@ async function loadAvatarData(usersCoordinates, usersData) {
             loadAvatar(currentUser.name, currentUser.avatar, color, userCords.latitude, userCords.longitude, currentUser.id);
             if (userData) {
                 color = getNameColor(userData.id);
-                loadAvatar(userData.name, userData.avatar, color, 50, 50, currentUser.id);
+                loadAvatar(userData.name, userData.avatar, color, 50, 50, userData.id);
             }
         }
     }

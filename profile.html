@@ -27,11 +27,11 @@
                     </div>
                     <div class="actions-container">
                         <img src="images/Icons/settings.svg" alt="Settings" class="actions-icon">
-                        <img src="images/Icons/cancel.svg" alt="Back" class="actions-icon">
+                        <a href="index.html">
+                            <img src="images/Icons/cancel.svg" alt="Back" class="actions-icon">
+                        </a>
                     </div>
-
                 </header>
-
                 <div class="profile-body">
                     <div class="profile-card">
                         <div class="profile-info">
@@ -40,28 +40,30 @@
                                     <h1 id="username" class="username"></h1>
                                     <p class="about-me">about me</p>
                                 </div>
-
                                 <div class="level-container">
                                     <span class="level-label">level</span>
                                     <span id="level-number" class="level-number"></span>
                                 </div>
                             </div>
-
                             <div class="about-me-text">
-                                <p id="about-me-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-                                    quis venenatis
-                                    turpis. Curabitur vel massa ...</p>
+                                <p id="about-me-text"></p>
+                                <img src="images/Icons/white-edit.svg" alt="Edit" class="edit-about edit-icon-container"
+                                    id="edit-icon">
                             </div>
                         </div>
                         <div id="avatar-profile" class="avatar-container2">
+                            <a href="edit-profile.html" class="edit-icon-container" id="edit-avatar">
+                                <img src="images/Icons/white-edit.svg" alt="Edit" class="edit-icon">
+                            </a>
                             <img id="profile-avatar-bg" src="images/placeholder.png" alt="User BG">
                             <img id="profile-avatar-img" src="images/placeholder.png" alt="User Avatar">
                         </div>
                     </div>
                 </div>
-                <div class="profile-body">
-                    <div class="add-friend-section">
-                        <span class="add-friend-text">Add Friend</span>
+                <div class="badges-info">
+                    <div class="add-friend-section" id="add-friend-section">
+                        <span class="add-friend-text" id="add-friend-text">Add Friend</span>
+                        <img src="images/Icons/add.svg" alt="Add" class="actions-icon" id="add-friend-icon">
                     </div>
                     <div class="tabs">
                         <button class="tab active" data-tab="badges">Badges</button>
@@ -69,15 +71,35 @@
                     </div>
                     <div id="badges" class="tab-content">
                         <div class="badge">
-                            <img src="images/badge1.png" alt="Crispy Shnitzel">
-                            <p>Crispy Shnitzel<br>12.08.24</p>`
+                            <img src="images/badges/fire.png" alt="Crispy Shnitzel">
+                            <p>Crispy Shnitzel<br>12.08.24</p>
                         </div>
                         <div class="badge">
-                            <img src="images/badge2.png" alt="Parisis">
+                            <img src="images/badges/coin.png" alt="Parisis">
                             <p>Parisis<br>2.02.24</p>
                         </div>
                     </div>
-                    <div id="achievements" class="tab-content" style="display:none;">
+                    <div id="achievements" class="tab-content">
+                        <div class="achievement">
+                            <p>You've recieved a new badge</p>
+                            <p class="xp">+200xp</p>
+                        </div>
+                        <div class="achievement">
+                            <p>You visited Level Up!</p>
+                            <p class="xp">+100xp</p>
+                        </div>
+                        <div class="achievement">
+                            <p>Yo and Benthehero1 are now friends</p>
+                            <p class="xp">+20xp</p>
+                        </div>
+                        <div class="achievement">
+                            <p>You visited Julio's Pizzeria!</p>
+                            <p class="xp">+100xp</p>
+                        </div>
+                        <div class="achievement">
+                            <p>You've recieved a new badge</p>
+                            <p class="xp">+200xp</p>
+                        </div>
                     </div>
                 </div>
             </div>
