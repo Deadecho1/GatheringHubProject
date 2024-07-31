@@ -1,7 +1,7 @@
 
 document.addEventListener('userDataReady', () => {
     try {
-        
+
         const queryString = window.location.search;
         const hubId = new URLSearchParams(queryString)?.get('id');
         const hub = hubsData.find(hub => hub.id === Number(hubId));
@@ -20,38 +20,34 @@ async function SetUpPage(hubId, hub) {
     document.querySelector('h1').textContent = hub.name;
     document.querySelector('h2#address').textContent = hub.location;
     document.querySelector('h2#phone-number').textContent = hub.phone;
-    setupLocationButton(hubId);
+    setupEditButton(hubId);
+    setupLocationButton(hub);
     setupHubStatus(hub);
     setupHubWorkingHours(hub);
     setUpRating(hub);
     setupDescription(hub);
     setupStations(hub);
     setupMoreButton();
-    updateLogo(`images/hubs/${hubId}/logo.png`);
+    updateLogo(hub);
     updateBadge(hub.badge);
     let imagesPaths = await getImagePaths(hubId);
     updateCarousel(imagesPaths);
 }
 
 async function getImagePaths(hubId) {
-    let paths = [];
-    let i = 1;
 
-    while (true) {
-        try {
-            const response = await fetch(`images/hubs/${hubId}/image_${i}.jpg`);
-            if (response.ok) {
-                paths.push(`images/hubs/${hubId}/image_${i}.jpg`);
-                i += 1;
-            }
-            else {
-                break;
-            }
+    let paths = [];
+    let maxImages = 2;
+    if (hubId > 5) {
+        for (let index = 1; index <= maxImages; index++) {
+            paths.push(`images/hubs/${1}/image_${index}.jpg`);
         }
-        catch (error) {
-            break;
+    } else {
+        for (let index = 1; index <= maxImages; index++) {
+            paths.push(`images/hubs/${hubId}/image_${index}.jpg`);
         }
     }
+
     return paths;
 }
 
@@ -143,20 +139,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function setupLocationButton(hubId) {
+function setupLocationButton(hub) {
     const button = document.querySelector(".location-icon");
     button.addEventListener('click', () => {
-        const latitude = hubsData[hubId].mapCoordinates[0];
-        const longitude = hubsData[hubId].mapCoordinates[1];
-        const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+        // const latitude = hubsData[hubId].mapCoordinates[0];
+        // const longitude = hubsData[hubId].mapCoordinates[1];
+        // const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+        const url = `${hub.locationUrl}`;
         window.open(url, '_blank');
     });
 }
+function setupEditButton(hubId) {
+    const editButton = document.querySelector('.flex-center');
+    const editLink = document.getElementById("edit-link");
+    editLink.href = `create-hub.html?hubId=${hubId}`;
+    if (userData.role === 'admin') {
+        editButton.classList.add('d-none');
+    }
+}
 
-function updateLogo(logoPath) {
+function updateLogo(hub) {
     const logoElement = document.querySelector('.hub-page-logo');
     if (logoElement) {
-        logoElement.src = logoPath;
+        if (hub.id > 5) {
+            logoElement.src = hub.logo;
+        }
+        else {
+            logoElement.src = `images/hubs/${hub.id}/logo.png`;
+        }
     }
 }
 
@@ -180,7 +190,7 @@ function updateCarousel(imagePaths) {
         carouselItem.className = `carousel-item ${activeClass}`;
         const img = document.createElement('img');
         img.src = path;
-        img.className = 'd-block w-100';
+        img.className = 'd-block ';
         img.style.objectFit = "contain";
         img.style.borderRadius = "15px";
         carouselItem.appendChild(img);
@@ -216,14 +226,27 @@ function setupMoreButton() {
 }
 
 function setUpRating(hub) {
-    const starRating = document.getElementById('star-rating');
+    const starRating = document.querySelector('#star-rating');
+    const googleLinkElement = document.querySelector('.google-link.reviews-link');
+    const businessLinkElement = document.querySelector('.google-link.business-link');
+
+    if (businessLinkElement) {
+        businessLinkElement.href = hub.websiteUrl;
+    }
+    if (googleLinkElement) {
+        googleLinkElement.href = `${hub.locationUrl}`;
+        googleLinkElement.textContent = `${hub.reviews} Google reviews`;
+    }
     starRating.innerHTML = '';
 
+    if (googleLinkElement) {
+        googleLinkElement.href = `${(hub.locationUrl)}`;
+    }
     for (let i = 1; i <= 5; i++) {
         const star = document.createElement('span');
         star.classList.add('star');
-        star.innerHTML = i <= hub.rating ? '&#9733;' : '&#9734;';
-        if (i <= hub.rating) {
+        star.innerHTML = i <= Number(hub.rating) ? '&#9733;' : '&#9734;';
+        if (i <= Number(hub.rating)) {
             star.classList.add('filled');
         }
         starRating.appendChild(star);

@@ -1,7 +1,6 @@
 let userData;
 let hubsData;
 let abortController;
-//let currentLocation = localStorage.getItem('coords'); disabled until full release
 
 const userDataReadyEvent = new Event('userDataReady');
 

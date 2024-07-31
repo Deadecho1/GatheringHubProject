@@ -1,22 +1,20 @@
-const images = [
-    'images/hubs/1/logo.png',
-    'images/hubs/2/logo.png',
-    'images/hubs/3/logo.png',
-    'images/hubs/4/logo.png',
-    'images/hubs/5/logo.png',
-];
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hubId = urlParams.get('hubId');
+    if (hubId) {
+        await loadHubData(hubId);
+    }
+
     document.getElementById("hub-form").addEventListener('submit', async function (event) {
         event.preventDefault();
-
         populateHiddenForms();
-
 
         const formData = new FormData(this);
         const formObject = {};
         formData.forEach((value, key) => {
             formObject[key] = value;
         });
+
         let userString = localStorage.getItem('userInfo');
         const userObject = JSON.parse(userString);
         formObject.ownerId = userObject.id;
@@ -28,31 +26,47 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify(formObject)
         });
+
         const data = await response.json();
         if (response.ok) {
             const form = document.getElementById('hub-form');
-            form.submit()
+            form.submit();
             const url = `create-station.html?hubId=${data.id}`;
-            window.location.href = url
+            window.location.href = url;
         } else {
             alert(data.error);
         }
-        ;
     });
+
+    await initializePage();
 });
 
-
-document.addEventListener('userDataReady', async () => {
-    populateLogoOptions(images);
+async function loadHubData(hubId) {
     try {
-        const response = await fetch('http://localhost:3000/api/badges/all-badges');
-        const data = await response.json();
-        populateBadgeOptions(data);
-        console.log("GET /badges");
+        const response = await fetch(`http://localhost:3000/api/hubs/${hubId}`);
+        const hub = await response.json();
+        document.getElementById('create-hub-header').textContent = 'Edit Hub';
+        document.getElementById('create-station-btn').textContent = 'Save hub';
+
+        if (response.ok) {
+            document.getElementById('name').value = hub.name;
+            document.getElementById('address').value = hub.location;
+            document.getElementById('phone').value = hub.phone;
+            document.getElementById('about').value = hub.about;
+            const [opHour, opMin] = hub.openingHour.split(':');
+            document.getElementById('op-hour').value = opHour;
+            document.getElementById('op-min').value = opMin;
+            const [clHour, clMin] = hub.closingHour.split(':');
+            document.getElementById('cl-hour').value = clHour;
+            document.getElementById('cl-hour').value = clMin;
+
+        } else {
+            console.error("Error loading hub data:", hub.error);
+        }
     } catch (error) {
-        console.error("Error fetching badges:", error);
+        console.error("Error fetching hub data:", error);
     }
-});
+}
 
 function populateHiddenForms() {
     const opHour = document.getElementById('op-hour').value.padStart(2, '0');
@@ -66,19 +80,40 @@ function populateHiddenForms() {
     document.getElementById('cl-time').value = clTime;
 }
 
-/* temporary, will be replaced with image upload when we have a server */
+async function initializePage() {
+    const images = [
+        'images/hubs/1/logo.png',
+        'images/hubs/2/logo.png',
+        'images/hubs/3/logo.png',
+        'images/hubs/4/logo.png',
+        'images/hubs/5/logo.png',
+    ];
+    populateLogoOptions(images);
+
+    try {
+        const response = await fetch('http://localhost:3000/api/badges/all-badges');
+        const data = await response.json();
+        populateBadgeOptions(data);
+        console.log("GET /badges");
+    } catch (error) {
+        console.error("Error fetching badges:", error);
+    }
+}
+
 function populateLogoOptions(images) {
     const logoList = document.querySelector("#logo-list");
     const template = document.querySelector("#logo-option");
     if (!template) return;
-    for (let imagesIndex = 0; imagesIndex < images.length; imagesIndex++) {
+    for (let i = 0; i < images.length; i++) {
         let clone = template.content.cloneNode(true);
-        clone.querySelector("input").value = images[imagesIndex];
-        clone.querySelector("img").src = images[imagesIndex]
-        clone.querySelector("img").alt = `hub logo`;
+        const radio = clone.querySelector("input");
+        radio.value = images[i];
+        radio.id = `logo-${i + 1}`;
+        const img = clone.querySelector("img");
+        img.src = images[i];
+        img.alt = `hub logo`;
         logoList.appendChild(clone);
     }
-
 
     let firstChild = logoList.querySelector("input");
     if (firstChild) {
@@ -93,10 +128,13 @@ function populateBadgeOptions(badgeOptions) {
 
     for (const [key, value] of Object.entries(badgeOptions)) {
         let clone = template.content.cloneNode(true);
-        clone.querySelector("input").value = value.name;
-        clone.querySelector("img").src = `images/badges/${value.name}.png`;
-        clone.querySelector("img").alt = `badge ${value.name}`;
-        badgeList.appendChild(clone)
+        const radio = clone.querySelector("input");
+        radio.value = value.name;
+        radio.id = `badge-${key}`;
+        const img = clone.querySelector("img");
+        img.src = `images/badges/${value.name}.png`;
+        img.alt = `badge ${value.name}`;
+        badgeList.appendChild(clone);
     }
 
     let firstChild = badgeList.querySelector("input");
@@ -104,28 +142,3 @@ function populateBadgeOptions(badgeOptions) {
         firstChild.checked = true;
     }
 }
-
-// waiting for full release, not usable yet.
-/*
-function geocodeAddress(address) {
-    const apiKey = "tempapikey";
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
-
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'OK') {
-            const location = data.results[0].geometry.location;
-            const lat = location.lat;
-            const lng = location.lng;
-
-            document.querySelector('input[name="lat"]').value = lat;
-            document.querySelector('input[name="lng"]').value = lng;
-        } else {
-            console.log(data.status);
-            alert('The address you entered could not be found. Please enter a valid address.');
-        }
-      })
-      .catch(error => console.error('Error:', error));
-}
-*/

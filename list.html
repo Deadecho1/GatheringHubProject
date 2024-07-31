@@ -17,6 +17,7 @@
     <script src="js/initialization.js"></script>
     <script src="js/header.js"></script>
     <script src="js/hub-list.js"></script>
+    <script src="js/hub-list-item.js"></script>
     <title>Gathering Hub - List Page</title>
 </head>
 
@@ -50,7 +51,9 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="menu-burger-icon"></i>
                         Distance
-                        <i class="down-arrow-icon svg-blue"></i>
+                        <a id="back-link" href="#" class="link-container">
+                            <img src="images/Icons/down-chevron.svg" alt="Back" class="actions-icon  rotated">
+                        </a>
                     </button>
                     <ul class="dropdown-menu">
                         <li><button class="dropdown-item active dropdown-extend" type="button">Distance</button></li>
@@ -112,6 +115,23 @@
                 <i id="friends-icon"></i>
             </a>
         </footer>
+    </div>
+    <div id="confirmation-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Warning</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Unverified Hubs may be unsafe, use your own discretion when choosing where to go.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="confirm-button" class="btn btn-primary">Aceptar</button>
+                    <button type="button" id="cancel-button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

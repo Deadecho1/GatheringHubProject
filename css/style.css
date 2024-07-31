@@ -830,7 +830,8 @@ footer>a:hover {
 }
 
 #MO-passing-imgs {
-    background: #384248;
+    background: #1E3847;
+
 }
 
 .carousel {
@@ -849,6 +850,10 @@ footer>a:hover {
     transition: transform 0.5s ease-in-out;
 }
 
+.carousel-item.active {
+    display: flex;
+    justify-content: center;
+}
 
 .fixed-size-image {
     object-fit: contain;
@@ -1456,4 +1461,9 @@ footer>a:hover {
     font-size: inherit;
     padding: 8px;
     box-sizing: border-box;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
 }
