@@ -1,4 +1,3 @@
-var temporaryQueryStringHub;
 let hubListTemplate;
 let templateList;
 let verifiedHubs = [];

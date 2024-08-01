@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let messageText = chatInput.value.trim();
 
-
         if (messageText !== "") {
             fetch("https://gathering-hub-project-backend.onrender.com/api/chats/", {
                 method: "POST",
