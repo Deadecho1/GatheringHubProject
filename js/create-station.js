@@ -45,15 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const platformSelect = document.getElementById('platform');
     const gameSelect = document.getElementById('game');
 
-    const platforms = ["PC", "PlayStation", "Xbox", "Nintendo Switch"];
-    const games = ["Fortnite", "Apex Legends", "Minecraft", "Among Us"];
+    const platforms = ["PC", "Xbox", "Switch"];
+    const games = ["LoL", "Party_Animals", "SSBU"];
 
     function populateSelect(selectElement, options) {
         selectElement.innerHTML = '<option value="" disabled selected>Select an option</option>';
 
         options.forEach(option => {
             const optionElement = document.createElement('option');
-            optionElement.value = option;
+            optionElement.value = option.toLowerCase();
             optionElement.textContent = option;
             selectElement.appendChild(optionElement);
         });
