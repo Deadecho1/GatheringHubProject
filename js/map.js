@@ -129,8 +129,8 @@ async function loadAvatarData(usersCoordinates, usersData) {
     if (usersData) {
         for (let userCordsIndex = 0; userCordsIndex < usersCoordinates.length; userCordsIndex++) {
             var userCords = usersCoordinates[userCordsIndex];
-            const currentUser = usersData.find(user => user.id === userCords.UserId);
-            let color = getNameColor(userCords.UserId);
+            const currentUser = usersData.find(user => user.id === userCords.tbl114UserId);
+            let color = getNameColor(userCords.tbl114UserId);
             loadAvatar(currentUser.name, currentUser.avatar, color, userCords.latitude, userCords.longitude, currentUser.id);
             if (userData) {
                 color = getNameColor(userData.id);
@@ -165,7 +165,7 @@ function loadHubData(hubsCoordinates, usersData) {
     }
     const map = document.querySelector(".bg-map");
     for (let hubIndex = 0; hubIndex < hubsCoordinates.length; hubIndex++) {
-        const hub = hubsData.find(hub => hub.id === Number(hubsCoordinates[hubIndex].HubId));
+        const hub = hubsData.find(hub => hub.id === Number(hubsCoordinates[hubIndex].tbl114HubId));
         loadHubAvatar(hub, hub.id, usersData, false, hubsCoordinates[hubIndex].latitude, hubsCoordinates[hubIndex].longitude, map);
 
     }
@@ -189,7 +189,7 @@ async function loadHubs(verified) {
         let niceStreetX = 80;
 
         for (let hubIndex = 0; hubIndex < hubsData.length; hubIndex++) {
-            const hub = coordinatesHubData.find(hub => hub.HubId === Number(hubsData[hubIndex].id));
+            const hub = coordinatesHubData.find(hub => hub.tbl114HubId === Number(hubsData[hubIndex].id));
             if (!hub) {
                 loadHubAvatar(hubsData[hubIndex], hubsData[hubIndex].id, usersData, false, niceStreetY, niceStreetX, map);
                 niceStreetY -= 10;
