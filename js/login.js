@@ -13,7 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         const data = await response.json();
         if (response.ok) {
             localStorage.setItem('userInfo', JSON.stringify(data));
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
         } else {
             alert(data.error);
 
