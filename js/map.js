@@ -26,10 +26,10 @@ function loadMessages(chatInputContainer, chatContainer) {
                 const color = getNameColor(userInfo.id);
 
                 if (message.username === userInfo.username) {
-                    newMessage.innerHTML = `<span style="color:${color}">${'Yo'}:</span> ${message.message}`;
+                    newMessage.innerHTML = `<span style="color:${color}">${'You'}:</span> ${message.message}`;
 
                 } else {
-                    newMessage.innerHTML = `<span style="color:${color}">${username}:</span> ${message.message}`;
+                    newMessage.innerHTML = `<span style="color:${color}">${message.username}:</span> ${message.message}`;
 
                 }
                 chatInputContainer.appendChild(newMessage);
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     let newMessage = document.createElement("div");
                     newMessage.classList.add("message");
 
-                    const username = 'Yo';
+                    const username = 'You';
                     const color = getNameColor(userInfo.id);
 
                     newMessage.innerHTML = `<span style="color:${color}">${username}:</span> ${messageText}`;
