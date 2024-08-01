@@ -1274,6 +1274,16 @@ footer>a:hover {
     padding-right: 15px;
 }
 
+@media (min-width: 600px) {
+    #profile-avatar-bg {
+        width: auto;
+    }
+
+    #edit-profile-icon {
+        top: -35px !important;
+        left: -80px !important;
+    }
+}
 
 .add-friend-section {
     visibility: hidden;
@@ -1366,6 +1376,15 @@ footer>a:hover {
 }
 
 .edit-icon {
+    position: absolute;
+    top: 10px;
+    left: -15px;
+    z-index: 4;
+    cursor: pointer;
+    width: 24px;
+}
+
+#edit-profile-icon {
     position: absolute;
     top: 10px;
     left: -15px;
