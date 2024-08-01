@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const userObject = JSON.parse(userString);
         formObject.ownerId = userObject.id;
 
-        const response = await fetch('http://localhost:3000/api/hubs/', {
+        const response = await fetch('https://gathering-hub-project-backend.onrender.com/api/hubs/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadHubData(hubId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/hubs/${hubId}`);
+        const response = await fetch(`https://gathering-hub-project-backend.onrender.com/api/hubs/${hubId}`);
         const hub = await response.json();
         document.getElementById('create-hub-header').textContent = 'Edit Hub';
         document.getElementById('create-station-btn').textContent = 'Save hub';
@@ -91,7 +91,7 @@ async function initializePage() {
     populateLogoOptions(images);
 
     try {
-        const response = await fetch('http://localhost:3000/api/badges/all-badges');
+        const response = await fetch('https://gathering-hub-project-backend.onrender.com/api/badges/all-badges');
         const data = await response.json();
         populateBadgeOptions(data);
         console.log("GET /badges");

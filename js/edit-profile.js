@@ -54,7 +54,7 @@ function openTab(evt, tabName) {
 
 async function updateUserAvatar(avatar) {
     userData.avatar = avatar
-    const response = await fetch(`http://localhost:3000/api/users/${userData.id}`, {
+    const response = await fetch(`https://gathering-hub-project-backend.onrender.com/api/users/${userData.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ async function updateUserAvatar(avatar) {
 }
 async function updateUserAvatarBg(avatarBg) {
     userData.avatarBg = avatarBg
-    const response = await fetch(`http://localhost:3000/api/users/${userData.id}`, {
+    const response = await fetch(`https://gathering-hub-project-backend.onrender.com/api/users/${userData.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

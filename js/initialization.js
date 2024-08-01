@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         abortController = new AbortController();
         json = localStorage.getItem('userInfo');
         userData = JSON.parse(json)
-        hubsData = await fetchData('http://localhost:3000/api/hubs/all-hubs');
+        hubsData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/hubs/all-hubs');
         document.dispatchEvent(userDataReadyEvent);
     } catch (error) {
         handleError(error, 'Initialization error:');

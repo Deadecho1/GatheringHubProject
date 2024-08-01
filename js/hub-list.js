@@ -14,7 +14,7 @@ let defaultLocation = {
 let selectedSortOption = 'Distance';
 document.addEventListener('userDataReady', async () => {
     try {
-        const coordinatesHubData = await fetchData('http://localhost:3000/api/coordinates/all-hubs');
+        const coordinatesHubData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/coordinates/all-hubs');
         for (let hubIndex = 0; hubIndex < coordinatesHubData.length; hubIndex++) {
             verifiedHubs.push(hubsData.find(hub => hub.id === Number(coordinatesHubData[hubIndex].id)));
         }

@@ -2,9 +2,9 @@ let userString = localStorage.getItem('userInfo');
 const userInfo = JSON.parse(userString);
 document.addEventListener('userDataReady', async function () {
     try {
-        const coordinatesUserData = await fetchData('http://localhost:3000/api/coordinates/all-users');
-        const coordinatesHubData = await fetchData('http://localhost:3000/api/coordinates/all-hubs');
-        const usersData = await fetchData('http://localhost:3000/api/users/all-users');
+        const coordinatesUserData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/coordinates/all-users');
+        const coordinatesHubData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/coordinates/all-hubs');
+        const usersData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/users/all-users');
 
         if (coordinatesUserData && coordinatesHubData && usersData) {
             loadAvatarData(coordinatesUserData, usersData);
@@ -16,7 +16,7 @@ document.addEventListener('userDataReady', async function () {
 });
 
 function loadMessages(chatInputContainer, chatContainer) {
-    fetch("http://localhost:3000/api/chats/all-chats")
+    fetch("https://gathering-hub-project-backend.onrender.com/api/chats/all-chats")
         .then(response => response.json())
         .then(data => {
             chatInputContainer.innerHTML = '';
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         if (messageText !== "") {
-            fetch("http://localhost:3000/api/chats/", {
+            fetch("https://gathering-hub-project-backend.onrender.com/api/chats/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -173,9 +173,9 @@ function loadHubData(hubsCoordinates, usersData) {
 }
 
 async function loadHubs(verified) {
-    const coordinatesUserData = await fetchData('http://localhost:3000/api/coordinates/all-users');
-    const coordinatesHubData = await fetchData('http://localhost:3000/api/coordinates/all-hubs');
-    const usersData = await fetchData('http://localhost:3000/api/users/all-users');
+    const coordinatesUserData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/coordinates/all-users');
+    const coordinatesHubData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/coordinates/all-hubs');
+    const usersData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/users/all-users');
     const map = document.querySelector(".bg-map");
     if (verified) {
         if (coordinatesUserData && coordinatesHubData && usersData) {

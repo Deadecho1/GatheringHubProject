@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         stationList.appendChild(stationItem);
 
-        const response = await fetch('http://localhost:3000/api/stations/', {
+        const response = await fetch('https://gathering-hub-project-backend.onrender.com/api/stations/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

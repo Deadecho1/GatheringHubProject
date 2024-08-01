@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById('level-number').textContent = userData.lvl;
         document.getElementById('about-me-text').textContent = userData.about;
     } else {
-        const response = await fetch(`http://localhost:3000/api/users/${userIdFromUrl}`);
+        const response = await fetch(`https://gathering-hub-project-backend.onrender.com/api/users/${userIdFromUrl}`);
         const user = await response.json();
         setElementImage('profile-avatar-bg', `images/avatar_bgs/${user.avatarBg}.png`, user.avatarBg);
         setElementImage('profile-avatar-img', `images/avatars/${user.avatar}.png`, user.avatar);
@@ -51,7 +51,7 @@ function hideEditButtons() {
 }
 
 async function addFriend(userId, friendId) {
-    const response = await fetch('http://localhost:3000/api/users/add', {
+    const response = await fetch('https://gathering-hub-project-backend.onrender.com/api/users/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ async function addFriend(userId, friendId) {
         body: JSON.stringify({ userId, friendId })
     });
     if (response.ok) {
-        const response = await fetch(`http://localhost:3000/api/users/${userData.id}`);
+        const response = await fetch(`https://gathering-hub-project-backend.onrender.com/api/users/${userData.id}`);
         const data = await response.json();
         localStorage.setItem('userInfo', JSON.stringify(data));
 
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function updateUserDescription(about) {
     userData.about = about;
-    const response = await fetch(`http://localhost:3000/api/users/${userData.id}`, {
+    const response = await fetch(`https://gathering-hub-project-backend.onrender.com/api/users/${userData.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
