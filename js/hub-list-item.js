@@ -134,9 +134,9 @@ function setHubsDistance(lat, long, hubs) {
     }
     for (let hubIndex = 0; hubIndex < hubs.length; hubIndex++) {
         hub = hubs[hubIndex];
-        // const mapCoordinates = JSON.parse(hub.mapCoordinates)
-        const hubLat = parseFloat(hub.mapCoordinates[0])
-        const hubLong = parseFloat(hub.mapCoordinates[1]);
+        const mapCoordinates = JSON.parse(hub.mapCoordinates)
+        const hubLat = parseFloat(mapCoordinates[0])
+        const hubLong = parseFloat(mapCoordinates[1]);
         const distance = distanceInKmBetweenEarthCoordinates(lat, long, hubLat, hubLong);
         const hubSection = document.getElementById(`item-${hub.id}`);
         hubSection.querySelector("#location h2").innerText = `${distance} Km Away`;
