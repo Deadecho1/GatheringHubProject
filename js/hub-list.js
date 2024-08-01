@@ -178,7 +178,7 @@ function populateHubList(hubs) {
     });
 }
 async function loadUserPostition() {
-    const response = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.GOOGLE_API_KEY}`, {
+    const response = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBpxfITbAY0IV4yUc_9RfisqKBOinHI5j0`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -187,7 +187,6 @@ async function loadUserPostition() {
 
     const data = await response.json();
     const { lat, lng } = data.location;
-    console.log(process.env.GOOGLE_API_KEY)
     defaultLocation = {
         "coords": {
             "latitude": lat,
