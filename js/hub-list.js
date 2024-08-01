@@ -22,7 +22,7 @@ document.addEventListener('userDataReady', async () => {
         showPosition(defaultLocation, verifiedHubs);
         const plusIconElement = document.querySelector('.add-hub-button');
 
-        if (userData.role === 'admin') {
+        if (userData.role !== 'admin') {
             plusIconElement.classList.add('d-none');
         }
     } catch (error) {

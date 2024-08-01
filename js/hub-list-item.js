@@ -1,13 +1,23 @@
-function handleDelete(event) {
+async function handleDelete(event) {
     const listItem = event.target.closest('.list-item');
     if (listItem) {
         lstParse = listItem.id.split("-");
         itemId = lstParse[lstParse.length - 1];
         delete hubsData[itemId];
 
-        console.log(`DELETE /hubs/${itemId}`);
+        const response = await fetch('https://gathering-hub-project-backend.onrender.com/api/hubs/${itemId}', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        if (response.ok) {
+            listItem.remove();
 
-        listItem.remove();
+        }
+        else {
+            alert(response.error)
+        }
     }
 }
 
