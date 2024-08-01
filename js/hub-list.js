@@ -5,16 +5,12 @@ let verifiedHubs = [];
 let modalConfirmed = false;
 let userString = localStorage.getItem('userInfo');
 const userInfo = JSON.parse(userString);
-let defaultLocation = {
-    "coords": {
-        "latitude": 32.0681777049327,
-        "longitude": 34.803421411031955
-    }
-};
+let defaultLocation;
 let selectedSortOption = 'Distance';
 document.addEventListener('userDataReady', async () => {
     try {
-        const coordinatesHubData = await fetchData('https://gathering-hub-project-backend.onrender.com/api/coordinates/all-hubs');
+        const coordinatesHubData = await fetchData('http://localhost:3000/api/coordinates/all-hubs');
+        await loadUserPostition();
         for (let hubIndex = 0; hubIndex < coordinatesHubData.length; hubIndex++) {
             verifiedHubs.push(hubsData.find(hub => hub.id === Number(coordinatesHubData[hubIndex].id)));
         }
@@ -181,4 +177,22 @@ function populateHubList(hubs) {
         button.addEventListener('click', handleDelete);
     });
 }
+async function loadUserPostition() {
+    const response = await fetch('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC6GgddP5Pu4Gqdcg2LXyYpM_zHpPDAofQ', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const data = await response.json();
+    const { lat, lng } = data.location;
+    defaultLocation = {
+        "coords": {
+            "latitude": lat,
+            "longitude": lng
+        }
+    }
+}
+
 
