@@ -19,87 +19,85 @@
 
 <body>
     <div id="wrapper">
-        <div class="padding-wrapper">
-            <div class="profile-container">
-                <header class="profile-header">
-                    <div class="logo-container">
-                        <img src="images/logo.png" alt="Logo" class="logo">
+        <div class="profile-container">
+            <header class="profile-header">
+                <div class="logo-container">
+                    <img src="images/logo.png" alt="Logo" class="logo">
+                </div>
+                <div class="actions-container">
+                    <img src="images/icons/settings.svg" alt="Settings" class="actions-icon">
+                    <a href="home.html">
+                        <img src="images/icons/cancel.svg" alt="Back" class="actions-icon">
+                    </a>
+                </div>
+            </header>
+            <div class="profile-body">
+                <div class="profile-card">
+                    <div class="profile-info">
+                        <div class="profile-row">
+                            <div class="username-div">
+                                <h1 id="username" class="username"></h1>
+                                <p class="about-me">about me</p>
+                            </div>
+                            <div class="level-container">
+                                <span class="level-label">level</span>
+                                <span id="level-number" class="level-number"></span>
+                            </div>
+                        </div>
+                        <div class="about-me-text">
+                            <p id="about-me-text"></p>
+                            <img src="images/icons/white-edit.svg" alt="Edit" class="edit-about edit-icon-container"
+                                id="edit-icon">
+                        </div>
                     </div>
-                    <div class="actions-container">
-                        <img src="images/icons/settings.svg" alt="Settings" class="actions-icon">
-                        <a href="home.html">
-                            <img src="images/icons/cancel.svg" alt="Back" class="actions-icon">
+                    <div id="avatar-profile" class="avatar-container2">
+                        <a href="edit-profile.html" class="edit-icon-container" id="edit-avatar">
+                            <img src="images/icons/white-edit.svg" alt="Edit" class="edit-icon">
                         </a>
-                    </div>
-                </header>
-                <div class="profile-body">
-                    <div class="profile-card">
-                        <div class="profile-info">
-                            <div class="profile-row">
-                                <div class="username-div">
-                                    <h1 id="username" class="username"></h1>
-                                    <p class="about-me">about me</p>
-                                </div>
-                                <div class="level-container">
-                                    <span class="level-label">level</span>
-                                    <span id="level-number" class="level-number"></span>
-                                </div>
-                            </div>
-                            <div class="about-me-text">
-                                <p id="about-me-text"></p>
-                                <img src="images/icons/white-edit.svg" alt="Edit" class="edit-about edit-icon-container"
-                                    id="edit-icon">
-                            </div>
-                        </div>
-                        <div id="avatar-profile" class="avatar-container2">
-                            <a href="edit-profile.html" class="edit-icon-container" id="edit-avatar">
-                                <img src="images/icons/white-edit.svg" alt="Edit" class="edit-icon">
-                            </a>
-                            <img id="profile-avatar-bg" src="images/placeholder.png" alt="User BG">
-                            <img id="profile-avatar-img" src="images/placeholder.png" alt="User Avatar">
-                        </div>
+                        <img id="profile-avatar-bg" src="images/placeholder.png" alt="User BG">
+                        <img id="profile-avatar-img" src="images/placeholder.png" alt="User Avatar">
                     </div>
                 </div>
-                <div class="badges-info">
-                    <div class="add-friend-section" id="add-friend-section">
-                        <span class="add-friend-text" id="add-friend-text">Add Friend</span>
-                        <img src="images/icons/add.svg" alt="Add" class="actions-icon" id="add-friend-icon">
+            </div>
+            <div class="badges-info">
+                <div class="add-friend-section" id="add-friend-section">
+                    <span class="add-friend-text" id="add-friend-text">Add Friend</span>
+                    <img src="images/icons/add.svg" alt="Add" class="actions-icon" id="add-friend-icon">
+                </div>
+                <div class="tabs">
+                    <button class="tab active" data-tab="badges">Badges</button>
+                    <button class="tab" data-tab="achievements">Achievements</button>
+                </div>
+                <div id="badges" class="tab-content">
+                    <div class="badge">
+                        <img src="images/badges/fire.png" alt="Crispy Shnitzel">
+                        <p>Crispy Shnitzel<br>12.08.24</p>
                     </div>
-                    <div class="tabs">
-                        <button class="tab active" data-tab="badges">Badges</button>
-                        <button class="tab" data-tab="achievements">Achievements</button>
+                    <div class="badge">
+                        <img src="images/badges/coin.png" alt="Parisis">
+                        <p>Parisis<br>2.02.24</p>
                     </div>
-                    <div id="badges" class="tab-content">
-                        <div class="badge">
-                            <img src="images/badges/fire.png" alt="Crispy Shnitzel">
-                            <p>Crispy Shnitzel<br>12.08.24</p>
-                        </div>
-                        <div class="badge">
-                            <img src="images/badges/coin.png" alt="Parisis">
-                            <p>Parisis<br>2.02.24</p>
-                        </div>
+                </div>
+                <div id="achievements" class="tab-content">
+                    <div class="achievement">
+                        <p>You've recieved a new badge</p>
+                        <p class="xp">+200xp</p>
                     </div>
-                    <div id="achievements" class="tab-content">
-                        <div class="achievement">
-                            <p>You've recieved a new badge</p>
-                            <p class="xp">+200xp</p>
-                        </div>
-                        <div class="achievement">
-                            <p>You visited Level Up!</p>
-                            <p class="xp">+100xp</p>
-                        </div>
-                        <div class="achievement">
-                            <p>You and Benthehero1 are now friends</p>
-                            <p class="xp">+20xp</p>
-                        </div>
-                        <div class="achievement">
-                            <p>You visited Julio's Pizzeria!</p>
-                            <p class="xp">+100xp</p>
-                        </div>
-                        <div class="achievement">
-                            <p>You've recieved a new badge</p>
-                            <p class="xp">+200xp</p>
-                        </div>
+                    <div class="achievement">
+                        <p>You visited Level Up!</p>
+                        <p class="xp">+100xp</p>
+                    </div>
+                    <div class="achievement">
+                        <p>You and Benthehero1 are now friends</p>
+                        <p class="xp">+20xp</p>
+                    </div>
+                    <div class="achievement">
+                        <p>You visited Julio's Pizzeria!</p>
+                        <p class="xp">+100xp</p>
+                    </div>
+                    <div class="achievement">
+                        <p>You've recieved a new badge</p>
+                        <p class="xp">+200xp</p>
                     </div>
                 </div>
             </div>
