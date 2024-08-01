@@ -138,7 +138,7 @@ function handleSearch() {
 function updateDropdown(button, items, selectedItem) {
     button.innerHTML = `<i class="menu-burger-icon"></i>${selectedItem.textContent.trim()}
                         <a id="back-link" href="#" class="link-container">
-                            <img src="images/Icons/down-chevron.svg" alt="Back" class="actions-icon  rotated">
+                            <img src="images/icons/down-chevron.svg" alt="Back" class="actions-icon  rotated">
                         </a>`;
     items.forEach(item => item.classList.remove('active'));
     selectedItem.classList.add('active');

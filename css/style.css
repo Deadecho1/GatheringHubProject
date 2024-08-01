@@ -716,8 +716,8 @@ footer>a:hover {
     width: 17px;
     height: 12px;
     background-color: #002D42;
-    -webkit-mask: url("/images/Icons/arrow_down.svg") no-repeat center;
-    mask: url("/images/Icons/arrow_down.svg");
+    -webkit-mask: url("/images/icons/arrow_down.svg") no-repeat center;
+    mask: url("/images/icons/arrow_down.svg");
     mask-repeat: no-repeat;
 }
 

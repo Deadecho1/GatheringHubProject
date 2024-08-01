@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             textArea.focus();
             textArea.setSelectionRange(textArea.value.length, textArea.value.length);
 
-            editIcon.src = "images/Icons/white-save.svg";
+            editIcon.src = "images/icons/white-save.svg";
         } else {
             const textArea = document.querySelector(".editable-textarea");
             const newText = textArea.value;
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             textArea.replaceWith(newP);
 
-            editIcon.src = "images/Icons/white-edit.svg";
+            editIcon.src = "images/icons/white-edit.svg";
         }
     });
 });
