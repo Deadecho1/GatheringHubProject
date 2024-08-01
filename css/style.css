@@ -1257,6 +1257,7 @@ footer>a:hover {
     position: absolute;
     z-index: 1;
     height: auto;
+    width: 150px;
 }
 
 #profile-avatar-img {
@@ -1312,7 +1313,7 @@ footer>a:hover {
     font-size: 14px;
     cursor: pointer;
     outline: none;
-    width: 25%;
+    width: auto;
 }
 
 .tab.active {
@@ -1367,8 +1368,8 @@ footer>a:hover {
 
 .edit-icon {
     position: absolute;
-    top: -40px;
-    left: -60px;
+    top: 10px;
+    left: -15px;
     z-index: 4;
     cursor: pointer;
     width: 24px;
