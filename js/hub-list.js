@@ -178,7 +178,7 @@ function populateHubList(hubs) {
     });
 }
 async function loadUserPostition() {
-    const response = await fetch('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC6GgddP5Pu4Gqdcg2LXyYpM_zHpPDAofQ', {
+    const response = await fetch('https://www.googleapis.com/geolocation/v1/geolocate?key=process.env.GOOGLE_API_KEY', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
